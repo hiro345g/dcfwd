@@ -112,20 +112,28 @@ su - node
 
 ## ファイルコピー用スクリプト
 
-　自分は実際に dev-fossil コンテナーを使って、`fossil` をインストールする `install-fossil.sh` を作成しました。このインストールスクリプトを作成するときは、ファイルのバックアップも兼ねながら、開発コンテナーと Docker ホスト間とでファイルコピーを何度かしました。その時に使ったスクリプトを `${REPO_DIR}/script/copy_to_*.sh` に置いてあります。これらは Docker ホストで実行するものです。
+　自分は実際に dev-fossil コンテナーを使って、`fossil` をインストールする `install-fossil.sh` などを作成しました。このインストールスクリプトを作成するときは、ファイルのバックアップも兼ねながら、開発コンテナーと Docker ホスト間とでファイルコピーを何度かしました。その時に使ったスクリプトを `${REPO_DIR}/script/copy_to_*.sh` に置いてあります。これらは Docker ホストで実行するものです。
 
 　VS Code を使えば GUI でコピーができますが、何度か繰り返すような作業はスクリプトで用意しておくと便利です。内容的には次のような単純なものですが、サンプルとしても使えるものなので入れてあります。
 
 ```sh: copy_to_h.sh
+#!/bin/sh
 # Docker ホストへコピー
 d=$(cd $(dirname $0)/../devcontainer-script;pwd)
 docker compose -p dev-fossil cp ubuntu2004:/root/install-fossil.sh ${d}/
+docker compose -p dev-fossil cp ubuntu2004:/root/install-node.sh ${d}/
+docker compose -p dev-fossil cp ubuntu2004:/root/init-angular.sh ${d}/
+docker compose -p dev-fossil cp ubuntu2004:/root/useradd-node.sh ${d}/
 ```
 
 ```sh: copy_to_c.sh
+#!/bin/sh
 # dev-fossil 開発コンテナーへコピー
 d=$(cd $(dirname $0)/../devcontainer-script;pwd)
 docker compose -p dev-fossil cp ${d}/install-fossil.sh ubuntu2004:/root/
+docker compose -p dev-fossil cp ${d}/install-node.sh ubuntu2004:/root/
+docker compose -p dev-fossil cp ${d}/init-angular.sh ubuntu2004:/root/
+docker compose -p dev-fossil cp ${d}/useradd-node.sh ubuntu2004:/root/
 ```
 
 ## dev-fossil 開発コンテナーのクリーニング
