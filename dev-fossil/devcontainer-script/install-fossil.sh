@@ -1,5 +1,5 @@
 if [ ! -e ${HOME}/.local/bin/fossil ]; then
-    if [ "x${USER}" = "x" ];
+    if [ "x${USER}" = "x" ]; then
         apt-get update && apt-get -y upgrade
         apt-get -y install curl sqlite3
     fi
