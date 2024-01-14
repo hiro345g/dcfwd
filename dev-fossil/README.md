@@ -138,7 +138,7 @@ docker compose -p dev-fossil cp ${d}/useradd-node.sh ubuntu2004:/root/
 
 ## dev-fossil 開発コンテナーのクリーニング
 
-　dev-fossil 開発コンテナーのクリーニングをするには、次のように `fossil-clean.sh` を実行します。クリーニングしても良い状態にしてから、実行するようにしてください。
+　dev-fossil 開発コンテナーのクリーニングをするには、次のように Docker ホストで `fossil-clean.sh` スクリプトを実行します。シェルスクリプトが実行できない OS を Docker ホストで使っている場合は、相当する処理を手作業で実行してください。基本的にスクリプト内にある `docker` コマンドの部分を実行すれば大丈夫です。なお、クリーニングしても良い状態にしてから、実行するようにしてください。
 
 ```console
 cd ${REPO_DIR}
