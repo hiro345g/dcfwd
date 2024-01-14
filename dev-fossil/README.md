@@ -71,15 +71,13 @@ root@ubuntu2204:~# fossil version
 This is fossil version 2.23 [47362306a7] 2023-11-01 18:56:47 UTC
 ```
 
-　これで、root ユーザーを使うことになりますが、`fossil` コマンドを使って色々と試すことができるようになります。
+　これで、`fossil` コマンドのインストールと動作確認ができました。
 
 　なお、ターミナルを新しく用意した場合は、環境変数 PATH には `${HOME}/.local/bin` が含まれていないので、`. install-fossil.sh` を実行する必要があります。注意してください。
 
 ## node ユーザーの利用
 
-　Linux について詳しい人なら、dev-fossil 開発コンテナーをアタッチする VS Code は root ユーザーにアタッチしている環境だという前提で、一般ユーザーを追加して調査をするといったことができます。
-
-　ただし、あまり使い勝手は良くないので、個人的には割り切って root ユーザーを使って試しています。
+　`fossil` は root ユーザーで実行することは想定されていないので、一般ユーザーを追加して使うことになります。dev-fossil 開発コンテナーをアタッチする VS Code は root ユーザーにアタッチしている環境なので、使い勝手があまりよくありませんが、ターミナルで簡単に実行できる範囲までしか調査しないので大丈夫です。
 
 　その場合は、`${REPO_DIR}/devcontainer-script/useradd-node.sh` にあるスクリプトを dev-fossil 開発コンテナー内で実行して node ユーザーを追加して使ってください。スクリプトの次の内容の1行なので、これを実行しても良いです。
 
@@ -87,9 +85,24 @@ This is fossil version 2.23 [47362306a7] 2023-11-01 18:56:47 UTC
 useradd -m node -s /bin/bash
 ```
 
-　それから `su` コマンドでユーザーを変えます。
+　それから `install-fossil.sh` を `/home/node` へコピーして node ユーザーも実行できるようにします。
 
 ```console
+cp /root/install-fossil.sh /home/node
+```
+
+　それから `su` コマンドでユーザーを変え、`fossil` コマンドをインストールし、それから環境変数 PATH を更新します。
+
+```console
+su - node
+sh /home/node/install-fossil.sh
+. /home/node/install-fossil.sh
+```
+
+　この手順で node ユーザーが `fossil` コマンドを使えない場合は、`apt` コマンドでインストールするのが楽なので、root ユーザーで次のようにインストールしてから `su` コマンドで node ユーザーになります。
+
+```console
+apt update && apt -y upgrade && apt -y install fossil
 su - node
 ```
 
