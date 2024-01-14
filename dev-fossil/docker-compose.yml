@@ -1,0 +1,13 @@
+name: dev-fossil
+services:
+  ubuntu2204:
+    image: ubuntu:22.04
+    container_name: ubuntu2204
+    hostname: ubuntu2204
+    tty: true
+    volumes:
+      - root-dir:/root
+
+volumes:
+  root-dir:
+    name: dev-fossil-ubuntu2204-root-dir-data
