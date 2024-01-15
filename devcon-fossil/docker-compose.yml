@@ -14,6 +14,7 @@ services:
       - type: bind
         source: ${SCRIPT_DIR:-./.devcontainer/script}
         target: /script
+        read_only: true
 
 volumes:
   repo-data:
