@@ -1,12 +1,12 @@
 // https://github.com/devcontainers/
 {
-	"name": "devcon-fossil",
+    "name": "devcon-fossil",
     "dockerComposeFile": "../docker-compose.yml",
     "service": "devcon-fossil",
     "postCreateCommand": "sudo sh /script/postCreateCommand.sh",
     "shutdownAction": "stopCompose",
-	"customizations": {
-		"vscode": {
+    "customizations": {
+        "vscode": {
             "settings": {
                 "sqltools.connections": [
                     {
@@ -17,13 +17,13 @@
                     }
                 ]
             },
-			"extensions": [
-				"koog1000.fossil",
+            "extensions": [
+                "koog1000.fossil",
                 "mtxr.sqltools",
                 "mtxr.sqltools-driver-sqlite"
-			]
-		}
-	},
-	"remoteUser": "node", // "node" or "root",
+            ]
+        }
+    },
+    "remoteUser": "node", // "node" or "root",
     "workspaceFolder": "/home/node/repo"
 }
