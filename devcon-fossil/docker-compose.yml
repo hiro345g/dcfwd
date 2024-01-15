@@ -1,0 +1,20 @@
+name: devcon-fossil
+services:
+  devcon-fossil:
+    image: mcr.microsoft.com/devcontainers/typescript-node:20-bookworm
+    container_name: devcon-fossil
+    hostname: devcon-fossil
+    init: true
+    tty: true
+    # node なら 1000:1000, root なら 0:0
+    user: 1000:1000
+    working_dir: /home/node/repo
+    volumes:
+      - repo-data:/home/node/repo
+      - type: bind
+        source: ${SCRIPT_DIR:-./.devcontainer/script}
+        target: /script
+
+volumes:
+  repo-data:
+    name: devcon-fossil-home-node-repo-data
