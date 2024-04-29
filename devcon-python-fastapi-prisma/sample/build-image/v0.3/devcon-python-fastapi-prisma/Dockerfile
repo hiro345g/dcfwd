@@ -32,5 +32,5 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && rm -rf /var/cache/apt /var/lib/apt/lists
 
-    # uvicorn 起動
+# uvicorn 起動
 ENTRYPOINT ["/root/.local/bin/poetry", "run", "uvicorn", "api.main:app", "--host", "0.0.0.0", "--reload"]
