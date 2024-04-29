@@ -1,0 +1,40 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.defaultInterpreterPath": "/workspace/app001/.venv/bin/python",
+        "python.analysis.extraPaths": [
+            "/workspace/app001"
+        ],
+        // `PYTHONPATH=/workspace/app001 python api/main.py` で実行可能
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.black-formatter",
+			"editor.formatOnSave": true
+		},
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Python デバッガー: 現在のファイル",
+				"type": "debugpy",
+				"request": "launch",
+				"program": "${file}",
+                "env": {
+                    "PYTHONPATH": "/workspace/app001"
+                },
+				"console": "integratedTerminal"
+			}
+		],
+		"compounds": []
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-python.python",
+			"ms-python.black-formatter"
+		]
+	}
+}

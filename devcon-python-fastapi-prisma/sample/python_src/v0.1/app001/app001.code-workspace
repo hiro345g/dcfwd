@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.defaultInterpreterPath": "/workspace/app001/.venv/bin/python"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-python.python"
+		]
+	}
+}

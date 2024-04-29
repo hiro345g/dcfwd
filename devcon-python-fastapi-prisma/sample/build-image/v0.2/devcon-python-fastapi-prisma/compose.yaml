@@ -1,0 +1,8 @@
+name: devcon-python-fastapi-prisma
+services:
+  devcon-python-fastapi-prisma:
+    build: .
+    image: devcon-python-fastapi-prisma:0.2
+    container_name: devcon-python-fastapi-prisma
+    hostname: devcon-python-fastapi-prisma
+    tty: true

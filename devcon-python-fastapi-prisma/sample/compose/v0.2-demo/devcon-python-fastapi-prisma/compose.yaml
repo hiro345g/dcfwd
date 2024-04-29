@@ -1,0 +1,10 @@
+name: devcon-python-fastapi-prisma
+services:
+  devcon-python-fastapi-prisma:
+    image: devcon-python-fastapi-prisma:0.2
+    container_name: devcon-python-fastapi-prisma
+    hostname: devcon-python-fastapi-prisma
+    tty: true
+    working_dir: /workspace/app001
+    ports:
+      - 127.0.0.1:8000:8000
