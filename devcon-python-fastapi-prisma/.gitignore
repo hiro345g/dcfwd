@@ -1,0 +1,12 @@
+dev/devcon-python-fastapi-prisma/app001/
+dev/devcon-python-fastapi-prisma/compose.yaml
+share/*
+build-image/devcon-python-fastapi-prisma/resource/*
+build-image/devcon-python-fastapi-prisma/.env
+build-image/devcon-python-fastapi-prisma/compose.yaml
+build-image/devcon-python-fastapi-prisma/Dockerfile
+build-image/devcon-python-fastapi-prisma/init.sh
+build-image/devcon-python-fastapi-prisma/build.sh
+build-image/devcon-python-fastapi-prisma/app001
+build-image/devcon-python-fastapi-prisma/install_starship.sh
+!.gitkeep
