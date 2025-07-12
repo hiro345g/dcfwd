@@ -30,6 +30,34 @@
 
 　開発コンテナーを自分でビルドしたカスタムイメージについて、Docker Hub と GitHub に自分でカスタマイズしたものを別途公開しています。そちらも参考にしてください。
 
+### hiro345g/dvc
+
+Dev Container based on mcr.microsoft.com/devcontainers/typescript-node (desktop-lite, docker-outside-of-docker, git, git-lfs)
+
+Docker Hub で次のイメージを公開しています。ビルド用のコードについては <https://github.com/hiro345g/dvc> で公開しています。
+
+| イメージ名:タグ   | os        | node | vnc   | mise | go   | jdk | php | python | ruby |
+| ----------------- | --------- | ---- | ----- | ---- | ---- | --- | --- | ------ | ---- |
+| dvc:base-202507   | debian 12 | 22   | -     | -    | -    | -   | -   | -      | -    |
+| dvc:novnc-202507  | debian 12 | 22   | 1.2.0 | -    | -    | -   | -   | -      | -    |
+| dvc:202507        | debian 12 | 22   | 1.2.0 | i    | -    | -   | -   | -      | -    |
+| dvc:go-202507     | debian 12 | 22   | 1.2.0 | i    | 1.24 | -   | -   | -      | -    |
+| dvc:jdk-202507    | debian 12 | 22   | 1.2.0 | i    | -    | 17  | -   | -      | -    |
+| dvc:php-202507    | debian 12 | 22   | 1.2.0 | i    | -    | -   | 8.2 | -      | -    |
+| dvc:python-202507 | debian 12 | 22   | 1.2.0 | i    | -    | -   | -   | 3.12   | -    |
+| dvc:ruby-202507   | debian 12 | 22   | 1.2.0 | i    | -    | -   | -   | -      | 3.2  |
+| dvc:gnr-202507    | debian 12 | 22   | 1.2.0 | i    | 1.24 | -   | -   | -      | 3.4  |
+| dvc:gnpr-202507   | debian 12 | 22   | 1.2.0 | i    | 1.24 | -   | -   | 3.12   | 3.4  |
+
+表について補足説明
+
+- debian 12 のコードネームは bookworm
+- vnc は tighervnc
+- mise は jdx/mise の略、i でインストール済みでバージョンは 2025.7.0
+- jdk は 21, 24 もインストール済み
+
+### hiro345g/dvc 以外の開発コンテナー
+
 | Docker イメージ名 | GitHub URL | 開発コンテナー | features |
 |----|----|----|----|
 |hiro345g/devcon-gnpr|<https://github.com/hiro345g/devcon-gnpr>| typescript-node | go, python, ruby, desktop-lite, docker-outside-of-docker, git, git-lfs |
