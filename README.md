@@ -10,21 +10,25 @@
 
 ### 必要なもの
 
-　開発コンテナーを動作をさせるには、Docker、Docker Compose、Visual Studio Code (VS Code) 、Dev Containers 拡張機能が必要です。
+　dcfwd で用意されている開発コンテナーを動作させるには、Docker Engine、Docker Compose、Visual Studio Code (VS Code) 、VS Code の拡張機能（Docker、Container Tools、Docker DX、Dev Containers）が使える環境が用意されていることを前提としています。
 
 ### Docker
 
 - [Docker Engine](https://docs.docker.com/engine/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
-　これらは [Docker Desktop](https://docs.docker.com/desktop/) をインストールしてあれば使えます。Linux では Docker Desktop をインストールしなくても Docker Engine と Docker Compose だけをインストールして使えます。例えば、Ubuntu を使っているなら [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) を参照してインストールしておいてください。
+　これらは [Docker Desktop](https://docs.docker.com/desktop/) をインストールしてあれば使えます。Linux では Docker Desktop をインストールしなくても Docker Engine をインストールして使えます。例えば、Ubuntu を使っているなら [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) を参照してインストールしておいてください。Docker Engine をインストールすると、Docker Compose もインストールされます。
 
 ### Visual Studio Code
 
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [Dev Containers 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+Visual Studio Code とその拡張機能である Docker、Container Tools、Docker DX、Dev Containers をインストールしておく必要があります。VS Code と各拡張機能については、次の URL を参考にしてください。
 
-　VS Code の拡張機能である Dev Containers を VS Code へインストールしておく必要があります。
+- [Visual Studio Code](https://code.visualstudio.com/)
+- 拡張機能
+  - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+  - [Container Tools](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers)
+  - [Docker DX](https://marketplace.visualstudio.com/items?itemName=docker.docker)
+  - [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 ## 実用的な開発コンテナー
 
@@ -52,11 +56,13 @@ Docker Hub で次のイメージを公開しています。ビルド用のコー
 表について補足説明
 
 - debian 12 のコードネームは bookworm
-- vnc は tighervnc
+- vnc は tigervnc
 - mise は jdx/mise の略、i でインストール済みでバージョンは 2025.7.0
 - jdk は 21, 24 もインストール済み
 
 ### hiro345g/dvc 以外の開発コンテナー
+
+github.com/hiro345g での dvc 以外の開発コンテナーもあります。こちらは、現在メンテナンスをしていないのですが、dcfwd プロジェクト内で使っているので、参考までに記載してあります。
 
 | Docker イメージ名 | GitHub URL | 開発コンテナー | features |
 |----|----|----|----|
