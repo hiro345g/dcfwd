@@ -1,3 +1,7 @@
+# java-app001-00
+
+最初に生成されたソースコード
+
 ## Getting Started
 
 Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
