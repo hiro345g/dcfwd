@@ -1,4 +1,4 @@
-# Dev ContainerによるJava開発
+# Dev Container による Java 開発
 
 このプロジェクトは、シンプルなJavaアプリケーション（`java-app001`）を [Dev Container](https://code.visualstudio.com/docs/remote/containers) 内で開発する方法を示すためのサンプルです。
 
