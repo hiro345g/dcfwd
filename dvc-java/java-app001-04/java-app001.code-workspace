@@ -28,14 +28,6 @@
       // 参照ライブラリのパスを指定 (globパターンが使えます)
       "lib/**/*.jar"
     ],
-    // Checkstyleの設定
-    "java.checkstyle.configuration": "${workspaceFolder}/google_checks.xml",
-    "java.checkstyle.version": "10.17.0", // Checkstyleのバージョンを指定
-    // null 解析のモード
-    // - automatic:   自動で有効化 
-    // - disabled:    無効化 
-    // - interactive: 対話的に確認
-    "java.compile.nullAnalysis.mode": "automatic",
     // Lombok などの Java エージェントを使う場合の設定例（必要ならコメント解除）
     // "java.jdt.ls.vmargs": "-noverify -Xmx1G -jar /path/to/lombok.jar -Djava.awt.headless=true",
     // エクスプローラーから直接操作することのないファイル/フォルダを非表示
@@ -56,7 +48,6 @@
   "extensions": {
     "recommendations": [
       "vscjava.vscode-java-pack",
-      "shengchen.vscode-checkstyle", // Checkstyle拡張機能
       "ms-azuretools.vscode-containers",
       "docker.docker",
       "eamodio.gitlens",
