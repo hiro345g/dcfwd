@@ -9,9 +9,9 @@ Dev Container を利用することで、一貫性があり隔離された開発
 1. [VS Code と Docker で始める！シンプルな Java 開発入門](https://zenn.dev/hiro345/articles/20250910_vscode_java)
 2. [Java プロジェクトを Gemini CLI に対応させよう](https://zenn.dev/hiro345/articles/20250912_vscode_java_02)
 
-`java-app001` が開発用です。リポジトリの `java-app001` は最終版（01版）となっています。
+`java-app001` が開発用です。リポジトリの `java-app001` は最終版（02版）となっています。
 
-`java-app001-00` から `java-app001-04` までが 1 の記事用で、`java-app001-05` は 2 の記事用です（この時点では 01 版までのコードしか含んでいません）。
+`java-app001-00` から `java-app001-04` までが 1 の記事用で、`java-app001-05` は 2 の記事用です（この時点では 02 版までのコードしか含んでいません）。
 
 ## 前提条件
 
@@ -30,4 +30,4 @@ Dev Container を利用することで、一貫性があり隔離された開発
 
 - `.devcontainer/`: Dev Container の設定ファイル（`devcontainer.json`）
 - `java-app001/`: サンプルの Java アプリケーション
-- `java-app001-00/` から `java-app001-05/`: `java-app001/` の更新履歴（この時点では java-app001-00 までしか含んでいません）。
+- `java-app001-00/` から `java-app001-05/`: `java-app001/` の更新履歴（この時点では java-app001-01 までしか含んでいません）。
