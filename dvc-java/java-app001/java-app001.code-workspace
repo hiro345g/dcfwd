@@ -1,0 +1,58 @@
+{
+  // ワークスペースに含めるフォルダを指定
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  // ワークスペース全体に適用する設定
+  "settings": {
+    // Javaのバージョン設定
+    // Dev Container を使っている場合は不要なことが多いですが、明示的に指定する例です
+    "java.configuration.runtimes": [
+      {
+        "name": "JavaSE-21",
+        "path": "/usr/local/sdkman/candidates/java/21.0.7-tem", // Dev Container内のJDKパス
+        "default": true
+      }
+    ],
+    // ファイル保存時に自動でフォーマットする
+    "editor.formatOnSave": true,
+    // .vscode/settings.json にあった設定の反映。
+    // こちらを使う場合、`.vscode/setting.json` は削除して良い。
+    "java.project.sourcePaths": [
+      "src"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+      // 参照ライブラリのパスを指定 (globパターンが使えます)
+      "lib/**/*.jar"
+    ],
+    // Lombok などの Java エージェントを使う場合の設定例（必要ならコメント解除）
+    // "java.jdt.ls.vmargs": "-noverify -Xmx1G -jar /path/to/lombok.jar -Djava.awt.headless=true",
+    // エクスプローラーから直接操作することのないファイル/フォルダを非表示
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/bin": true, // コンパイル後のクラスファイル
+      "**/.settings": true, // Eclipse 固有の設定ファイル
+      "**/.classpath": true,
+      "**/.project": true
+    }
+  },
+  // ワークスペースで推奨する拡張機能
+  "extensions": {
+    "recommendations": [
+      "vscjava.vscode-java-pack",
+      "ms-azuretools.vscode-containers",
+      "docker.docker",
+      "eamodio.gitlens",
+      "donjayamanne.githistory",
+      "mhutchie.git-graph"
+    ]
+  }
+}

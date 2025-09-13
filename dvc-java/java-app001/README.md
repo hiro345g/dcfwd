@@ -1,25 +1,50 @@
 # java-app001
 
-テストが成功するもの
+これは、基本的な "Hello, World!" をコンソールに出力するシンプルなJavaアプリケーションです。このプロジェクトは、SLF4Jによるロギング機能も含んでいます。
 
-- App.java: テストに対応したソースコード
-- AppTest.java: テストコード
+## 使い方
 
-## Getting Started
+### ビルド
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+プロジェクトをビルドするには、以下のスクリプトを実行します。
+このスクリプトは、依存関係（SLF4J）をダウンロードし、ソースコードをコンパイルします。
 
-## Folder Structure
+```bash
+./script/build.sh
+```
 
-The workspace contains two folders by default, where:
+### 実行
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+アプリケーションを実行するには、以下のスクリプトを使用します。
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+```bash
+./script/run.sh
+```
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+実行すると、コンソールに "Hello, World from VS Code!" と表示されます。
 
-## Dependency Management
+### テスト
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+プロジェクトのテストを実行するには、以下のスクリプトを使用します。
+
+```bash
+./script/test.sh
+```
+
+## プロジェクト構造
+
+```text
+java-app001/
+├── bin/          # コンパイルされたクラスファイル
+├── lib/          # 依存ライブラリ (JARs)
+├── script/       # ビルド、実行、テスト用のシェルスクリプト
+│   ├── build.sh
+│   ├── run.sh
+│   └── test.sh
+├── src/          # Javaソースコード
+│   ├── App.java
+│   └── AppTest.java
+├── .gitignore
+├── java-app001.code-workspace
+└── README.md
+```

@@ -1,21 +1,12 @@
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * メインクラス
  */
 public class App {
-    /** ロガー */
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
-
     /**
-     * 挨拶用の固定メッセージを返し、その過程でログを出力します。
+     * 挨拶用の固定メッセージを返します。
      * @return "Hello, World from VS Code!" という文字列
      */
     public static String getGreeting() {
-        logger.info("This is an info message.");
-        logger.warn("This is a warning message.");
-        logger.error("This is an error message.");
         return "Hello, World from VS Code!";
     }
 
