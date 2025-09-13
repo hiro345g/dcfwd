@@ -1,6 +1,9 @@
 # java-app001
 
-最初に生成されたソースコードを修正したもの
+テストが失敗するもの
+
+- App.java: 最初に生成されるソースコードを修正したもの
+- AppTest.java: テストコード
 
 ## Getting Started
 
