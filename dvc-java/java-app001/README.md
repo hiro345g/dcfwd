@@ -1,8 +1,8 @@
 # java-app001
 
-テストが失敗するもの
+テストが成功するもの
 
-- App.java: 最初に生成されるソースコードを修正したもの
+- App.java: テストに対応したソースコード
 - AppTest.java: テストコード
 
 ## Getting Started

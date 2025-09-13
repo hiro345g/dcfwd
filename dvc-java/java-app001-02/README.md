@@ -1,3 +1,10 @@
+# java-app001-02
+
+テストが失敗するもの
+
+- App.java: 最初に生成されるソースコードを修正したもの
+- AppTest.java: テストコード
+
 ## Getting Started
 
 Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
