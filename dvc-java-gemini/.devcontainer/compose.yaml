@@ -1,0 +1,15 @@
+name: dvc-java-gemini
+services:
+  dvc-java-gemini:
+    build: .
+    image: dvc-java-gemini:0.0.1
+    tty: true
+    volumes:
+      # 開発コンテナで使う作業用フォルダ
+      - type: bind
+        source: ..
+        target: /workspaces/dvc-java-gemini
+      # Gemini CLI の設定用フォルダ
+      - type: bind
+        source: ../.gemini
+        target: /home/node/.gemini

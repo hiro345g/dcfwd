@@ -1,0 +1,26 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
+{
+  "name": "dvc-java-gemini",
+  "dockerComposeFile": "./compose.yaml",
+  "service": "dvc-java-gemini",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "shengchen.vscode-checkstyle",
+        "ms-azuretools.vscode-containers",
+        "docker.docker",
+        "eamodio.gitlens",
+        "donjayamanne.githistory",
+        "mhutchie.git-graph",
+        "google.gemini-code-assist",
+        "google.gemini-cli-vscode-ide-companion"
+      ]
+    }
+  }
+}
