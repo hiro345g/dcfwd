@@ -4,13 +4,23 @@
 
 VS Code の Dev Containers 拡張機能を使うと、開発コンテナーを使うことができるようになります。単純に VS Code をアタッチするという手軽な使い方から、`devcontainer.json` を用意して本格的に使うということもできます。
 
+Web アプリケーション開発以外でも開発コンテナーを使いたいときはあるので、他のサンプルも提供しています。
+
+| フォルダ名                   | 説明                                     |
+| ---------------------------- | ---------------------------------------- |
+| dev-fossil                   | fossil 利用                              |
+| devcon-fossil                | node ユーザーによる fossil 利用          |
+| devcon-python-fastapi-prisma | Python + FastAPI + Prisma                |
+| dvc-java                     | VS Code + Java プロジェクト              |
+| dvc-java-gemini              | VS Code + Gemini CLI + Java プロジェクト |
+
 ## Dev Containers について
 
 開発コンテナー（Dev Containers）については、開発が <https://github.com/devcontainers> でされていますので、そちらをご覧ください。
 
 ### 必要なもの
 
-dcfwd で用意されている開発コンテナーを動作させるには、Docker Engine、Docker Compose、Visual Studio Code (VS Code) 、VS Code の拡張機能（Docker、Container Tools、Docker DX、Dev Containers）が使える環境が用意されていることを前提としています。
+dcfwd で用意されている開発コンテナーを動作させるには、Docker Engine、Docker Compose、Visual Studio Code (VS Code) 、VS Code の拡張機能（Container Tools、Docker DX、Dev Containers）が使える環境が用意されていることを前提としています。
 
 ### Docker
 
@@ -21,11 +31,10 @@ dcfwd で用意されている開発コンテナーを動作させるには、Do
 
 ### Visual Studio Code
 
-Visual Studio Code とその拡張機能である Docker、Container Tools、Docker DX、Dev Containers をインストールしておく必要があります。VS Code と各拡張機能については、次の URL を参考にしてください。
+Visual Studio Code とその拡張機能である Container Tools、Docker DX、Dev Containers をインストールしておく必要があります。VS Code と各拡張機能については、次の URL を参考にしてください。
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - 拡張機能
-  - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
   - [Container Tools](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers)
   - [Docker DX](https://marketplace.visualstudio.com/items?itemName=docker.docker)
   - [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
@@ -59,18 +68,6 @@ Docker Hub で次のイメージを公開しています。ビルド用のコー
 - vnc は tigervnc
 - mise は jdx/mise の略、i でインストール済みでバージョンは 2025.7.0
 - jdk は 21, 24 もインストール済み
-
-### hiro345g/dvc 以外の開発コンテナー
-
-github.com/hiro345g での dvc 以外の開発コンテナーもあります。こちらは、現在メンテナンスをしていないのですが、dcfwd プロジェクト内で使っているので、参考までに記載してあります。
-
-| Docker イメージ名           | GitHub URL                                       | 開発コンテナー  | features                                                               |
-| --------------------------- | ------------------------------------------------ | --------------- | ---------------------------------------------------------------------- |
-| hiro345g/devcon-gnpr        | <https://github.com/hiro345g/devcon-gnpr>        | typescript-node | go, python, ruby, desktop-lite, docker-outside-of-docker, git, git-lfs |
-| hiro345g/devcon-gnr         | <https://github.com/hiro345g/devcon-gnr>         | typescript-node | go, ruby, desktop-lite, docker-outside-of-docker, git, git-lfs         |
-| hiro345g/devnode-py-desktop | <https://github.com/hiro345g/devnode-py-desktop> | typescript-node | python, desktop-lite, docker-outside-of-docker, git, git-lfs           |
-| hiro345g/devnode-desktop    | <https://github.com/hiro345g/devnode-desktop>    | typescript-node | desktop-lite, docker-outside-of-docker, git, git-lfs                   |
-| hiro345g/devcon-node        | <https://github.com/hiro345g/devcon-node>        | typescript-node | docker-outside-of-docker, git, git-lfs                                 |
 
 いずれも <https://github.com/devcontainers/images/tree/main/src/typescript-node> で公開されている typescript-node 開発コンテナーをベースとしています。
 
