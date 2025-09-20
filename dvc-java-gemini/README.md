@@ -17,16 +17,18 @@ Zenn で、このプロジェクトについての解説記事を公開してい
 ## はじめに
 
 1. このリポジトリをローカルマシンにクローンします。
-2. Gemini 用の認証情報用フォルダを用意します。
-3. Visual Studio Code で `dvc-java-gemini` フォルダを開きます。
-4. 通知が表示されたら、「コンテナーで再度開く（Reopen in Container）」をクリックして Dev Container を起動します。これにより、コンテナイメージがビルドされ、開発環境が開始されます。
-5. コンテナが起動したら、`java-app002` や `java-app003` フォルダを VS Code で開いて、それぞれのアプリケーションの開発と実行を開始できます。
+2. 開発コンテナ用イメージ `dvc-java-gemini` をビルドします。
+3. Gemini 用の認証情報用フォルダを用意します。
+4. Visual Studio Code で `dvc-java-gemini` フォルダを開きます。
+5. 通知が表示されたら、「コンテナーで再度開く（Reopen in Container）」をクリックして Dev Container を起動します。これにより、コンテナイメージがビルドされ、開発環境が開始されます。
+6. コンテナが起動したら、`java-app002` や `java-app003` フォルダを VS Code で開いて、それぞれのアプリケーションの開発と実行を開始できます。
 
-手順 1. から 4. はターミナル上で作業することができます。具体的には次のコマンドを実行します。
+手順 1. から 5. はターミナル上で作業することができます。具体的には次のコマンドを実行します。
 
 ```bash
 git clone https://github.com/hiro345g/dcfwd.git
-cd dcfwd
+cd dcfwd/dvc-java-gemini/
+docker compose -f .devcontainer/compose.yaml build
 cp -a ~/.gemini ./
 code .
 ```
