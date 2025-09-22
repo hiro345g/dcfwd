@@ -40,7 +40,10 @@
       "**/.project": true
     },
     "maven.view": "hierarchical",
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    // デバッガがターゲット JVM と通信する際の JDWP リクエストのタイムアウト時間(ms)。
+    // 短いと Attach to Maven Process with Task 利用時のアタッチができないことがある。
+    "java.debug.settings.jdwp.requestTimeout": 15000
   },
   // ワークスペースで推奨する拡張機能
   "extensions": {
