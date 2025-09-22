@@ -40,7 +40,10 @@
       "**/.project": true
     },
     "maven.view": "hierarchical",
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    // デバッガがターゲット JVM と通信する際の JDWP リクエストのタイムアウト時間(ms)。
+    // 短いと Attach to Maven Process with Task 利用時のアタッチができないことがある。
+    "java.debug.settings.jdwp.requestTimeout": 15000
   },
   // ワークスペースで推奨する拡張機能
   "extensions": {
@@ -69,7 +72,7 @@
         "request": "launch",
         "mainClass": "internal.dev.App",
         "projectName": "java-app003",
-        "preLaunchTask": "maven-build"
+        "preLaunchTask": "Build Maven Project"
       },
       {
         "type": "java",
@@ -81,12 +84,13 @@
       },
       {
         "type": "java",
-        "name": "Launch App - Debug mode",
-        "request": "launch",
-        "mainClass": "internal.dev.App",
-        "projectName": "java-app003",
-        "preLaunchTask": "maven-build",
-        "vmArgs": "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+        "name": "Attach to Maven Process with Task",
+        "request": "attach",
+        "hostName": "localhost",
+        "port": 5005,
+        "preLaunchTask": "Run Maven with Debug",
+        "postDebugTask": "Stop Maven Debug Process",
+        "projectName": "java-app003"
       }
     ]
   },
@@ -94,7 +98,7 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "label": "maven-build",
+        "label": "Build Maven Project",
         "type": "shell",
         "command": "./mvnw clean install",
         "problemMatcher": [
@@ -105,6 +109,25 @@
           "isDefault": true
         },
         "detail": "Run the maven build command"
+      },
+      {
+        "label": "Run Maven with Debug",
+        "type": "shell",
+        "command": "./mvnw",
+        "args": [
+          "exec:exec",
+          "-Pdebug"
+        ],
+        "problemMatcher": [],
+        "isBackground": true,
+        "dependsOn": [],
+        "detail": "Run the maven exec:exec -Pdebug command"
+      },
+      {
+        "label": "Stop Maven Debug Process",
+        "type": "shell",
+        "command": "ss -tln | grep :5005 > /dev/null && fuser -k 5005/tcp || true",
+        "problemMatcher": [],
       }
     ]
   }
