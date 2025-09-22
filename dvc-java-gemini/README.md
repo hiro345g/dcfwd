@@ -7,6 +7,7 @@ Dev Container と Gemini CLI を利用することで、一貫性があり隔離
 Zenn で、このプロジェクトについての解説記事を公開しています。
 
 - [VS Code \+ Docker \+ Gemini CLI で Java 開発（Gradle 版）](https://zenn.dev/hiro345/articles/20250919_vscode_java_03)
+- [VS Code \+ Docker \+ Gemini CLI で Java 開発（Maven 版）](https://zenn.dev/hiro345/articles/20250922_vscode_java_04)
 
 ## 前提条件
 
