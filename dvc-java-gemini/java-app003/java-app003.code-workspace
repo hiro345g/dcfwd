@@ -1,0 +1,134 @@
+{
+  // ワークスペースに含めるフォルダを指定
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  // ワークスペース全体に適用する設定
+  "settings": {
+    // Javaのバージョン設定
+    // Dev Container を使っている場合は不要なことが多いですが、明示的に指定する例です
+    "java.configuration.runtimes": [
+      {
+        "name": "JavaSE-21",
+        "path": "/usr/local/sdkman/candidates/java/21.0.7-tem", // Dev Container内のJDKパス
+        "default": true
+      }
+    ],
+    "maven.terminal.useJavaHome": true,
+    "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/21.0.7-tem",
+    // ファイル保存時に自動でフォーマットする
+    "editor.formatOnSave": true,
+    // Checkstyleの設定
+    "java.checkstyle.configuration": "${workspaceFolder}/google_checks.xml",
+    "java.checkstyle.version": "10.17.0", // Checkstyleのバージョンを指定
+    // Lombok などの Java エージェントを使う場合の設定例（必要ならコメント解除）
+    // "java.jdt.ls.vmargs": "-noverify -Xmx1G -jar /path/to/lombok.jar -Djava.awt.headless=true",
+    // エクスプローラーから直接操作することのないファイル/フォルダを非表示
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/.gradle": true,
+      "**/build": false, // ドキュメントが生成されるフォルダ
+      "**/.settings": true, // Eclipse 固有の設定ファイル
+      "**/.classpath": true,
+      "**/.project": true
+    },
+    "maven.view": "hierarchical",
+    "java.configuration.updateBuildConfiguration": "interactive",
+    // デバッガがターゲット JVM と通信する際の JDWP リクエストのタイムアウト時間(ms)。
+    // 短いと Attach to Maven Process with Task 利用時のアタッチができないことがある。
+    "java.debug.settings.jdwp.requestTimeout": 15000
+  },
+  // ワークスペースで推奨する拡張機能
+  "extensions": {
+    "recommendations": [
+      "vscjava.vscode-java-pack",
+      "shengchen.vscode-checkstyle", // Checkstyle拡張機能
+      "ms-azuretools.vscode-containers",
+      "docker.docker",
+      "eamodio.gitlens",
+      "donjayamanne.githistory",
+      "mhutchie.git-graph"
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Debug (Launch) - Current File",
+        "request": "launch",
+        "mainClass": "${file}"
+      },
+      {
+        "type": "java",
+        "name": "Debug (Launch) - App",
+        "request": "launch",
+        "mainClass": "internal.dev.App",
+        "projectName": "java-app003",
+        "preLaunchTask": "Build Maven Project"
+      },
+      {
+        "type": "java",
+        "name": "Debug (Attach)",
+        "request": "attach",
+        "hostName": "localhost",
+        "port": 5005,
+        "projectName": "java-app003"
+      },
+      {
+        "type": "java",
+        "name": "Attach to Maven Process with Task",
+        "request": "attach",
+        "hostName": "localhost",
+        "port": 5005,
+        "preLaunchTask": "Run Maven with Debug",
+        "postDebugTask": "Stop Maven Debug Process",
+        "projectName": "java-app003"
+      }
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Build Maven Project",
+        "type": "shell",
+        "command": "./mvnw clean install",
+        "problemMatcher": [
+          "$msCompile"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "detail": "Run the maven build command"
+      },
+      {
+        "label": "Run Maven with Debug",
+        "type": "shell",
+        "command": "./mvnw",
+        "args": [
+          "exec:exec",
+          "-Pdebug"
+        ],
+        "problemMatcher": [],
+        "isBackground": true,
+        "dependsOn": [],
+        "detail": "Run the maven exec:exec -Pdebug command"
+      },
+      {
+        "label": "Stop Maven Debug Process",
+        "type": "shell",
+        "command": "ss -tln | grep :5005 > /dev/null && fuser -k 5005/tcp || true",
+        "problemMatcher": [],
+      }
+    ]
+  }
+}
