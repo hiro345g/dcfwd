@@ -51,22 +51,22 @@ Docker Hub で次のイメージを公開しています。ビルド用のコー
 
 | イメージ名:タグ   | os        | node | vnc   | mise | go   | jdk | php | python | ruby |
 | ----------------- | --------- | ---- | ----- | ---- | ---- | --- | --- | ------ | ---- |
-| dvc:base-202507   | debian 12 | 22   | -     | -    | -    | -   | -   | -      | -    |
-| dvc:novnc-202507  | debian 12 | 22   | 1.2.0 | -    | -    | -   | -   | -      | -    |
-| dvc:202507        | debian 12 | 22   | 1.2.0 | i    | -    | -   | -   | -      | -    |
-| dvc:go-202507     | debian 12 | 22   | 1.2.0 | i    | 1.24 | -   | -   | -      | -    |
-| dvc:jdk-202507    | debian 12 | 22   | 1.2.0 | i    | -    | 17  | -   | -      | -    |
-| dvc:php-202507    | debian 12 | 22   | 1.2.0 | i    | -    | -   | 8.2 | -      | -    |
-| dvc:python-202507 | debian 12 | 22   | 1.2.0 | i    | -    | -   | -   | 3.12   | -    |
-| dvc:ruby-202507   | debian 12 | 22   | 1.2.0 | i    | -    | -   | -   | -      | 3.2  |
-| dvc:gnr-202507    | debian 12 | 22   | 1.2.0 | i    | 1.24 | -   | -   | -      | 3.4  |
-| dvc:gnpr-202507   | debian 12 | 22   | 1.2.0 | i    | 1.24 | -   | -   | 3.12   | 3.4  |
+| dvc:base-202509   | debian 12 | 22   | -     | -    | -    | -   | -   | -      | -    |
+| dvc:novnc-202509  | debian 12 | 22   | 1.2.0 | -    | -    | -   | -   | -      | -    |
+| dvc:202509        | debian 12 | 22   | 1.2.0 | i    | -    | -   | -   | -      | -    |
+| dvc:go-202509     | debian 12 | 22   | 1.2.0 | i    | 1.24 | -   | -   | -      | -    |
+| dvc:jdk-202509    | debian 12 | 22   | 1.2.0 | i    | -    | 17  | -   | -      | -    |
+| dvc:php-202509    | debian 12 | 22   | 1.2.0 | i    | -    | -   | 8.2 | -      | -    |
+| dvc:python-202509 | debian 12 | 22   | 1.2.0 | i    | -    | -   | -   | 3.12   | -    |
+| dvc:ruby-202509   | debian 12 | 22   | 1.2.0 | i    | -    | -   | -   | -      | 3.4  |
+| dvc:gnr-202509    | debian 12 | 22   | 1.2.0 | i    | 1.24 | -   | -   | -      | 3.4  |
+| dvc:gnpr-202509   | debian 12 | 22   | 1.2.0 | i    | 1.24 | -   | -   | 3.12   | 3.4  |
 
 表について補足説明
 
 - debian 12 のコードネームは bookworm
 - vnc は tigervnc
-- mise は jdx/mise の略、i でインストール済みでバージョンは 2025.7.0
+- mise は jdx/mise の略、i でインストール済みでバージョンは 2025.9.8
 - jdk は 21, 24 もインストール済み
 
 いずれも <https://github.com/devcontainers/images/tree/main/src/typescript-node> で公開されている typescript-node 開発コンテナーをベースとしています。
