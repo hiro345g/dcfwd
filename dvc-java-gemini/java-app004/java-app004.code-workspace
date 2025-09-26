@@ -1,0 +1,169 @@
+{
+  // ワークスペースに含めるフォルダを指定
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  // ワークスペース全体に適用する設定
+  "settings": {
+    // Javaのバージョン設定
+    "java.configuration.runtimes": [
+      {
+        "name": "JavaSE-21",
+        "path": "/usr/local/sdkman/candidates/java/21.0.7-tem", // Dev Container内のJDKパス
+        "default": true
+      }
+    ],
+    // Mavenが使用するJavaのバージョンをJAVA_HOMEに設定
+    "maven.terminal.useJavaHome": true,
+    // Java Language Serverが使用するJDKのパスを指定
+    "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/21.0.7-tem",
+    // ファイル保存時に自動でフォーマットする
+    "editor.formatOnSave": true,
+    // import のソート順の指定
+    "java.completion.importOrder": [
+      "#"
+    ],
+    // Google Java Style Guideに準拠したフォーマッター設定
+    "java.format.settings.url": "eclipse-java-google-style.xml",
+    // Google Java Style Guideを使う場合はプロファイルに GoogleStyle の指定が必要
+    "java.format.settings.profile": "GoogleStyle",
+    // Checkstyleの設定
+    "java.checkstyle.configuration": "${workspaceFolder}/google_checks.xml",
+    // Checkstyleのバージョンを指定
+    "java.checkstyle.version": "10.17.0",
+    // Lombokのサポートを確実にするためのVM引数
+    "java.jdt.ls.vmargs": "-noverify -Xmx1G -Djava.awt.headless=true",
+    // エクスプローラーから直接操作することのないファイル/フォルダを非表示
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/target": true,
+      "**/.gradle": true,
+      "**/.settings": true,
+      "**/.classpath": true,
+      "**/.project": true
+    },
+    // Mavenプロジェクトの表示形式を階層表示に設定
+    "maven.view": "hierarchical",
+    // ビルド構成の変更を対話的に確認する
+    "java.configuration.updateBuildConfiguration": "interactive",
+    // null解析を自動的に実行する
+    "java.compile.nullAnalysis.mode": "automatic",
+    // ファイル変更時の自動ビルドを無効化する
+    "java.autobuild.enabled": false
+  },
+  // ワークスペースで推奨する拡張機能
+  "extensions": {
+    "recommendations": [
+      "vscjava.vscode-java-pack",
+      "vmware.vscode-boot-dev-pack",
+      "shengchen.vscode-checkstyle",
+      "ms-azuretools.vscode-containers",
+      "docker.docker",
+      "eamodio.gitlens",
+      "donjayamanne.githistory",
+      "mhutchie.git-graph"
+    ]
+  },
+  // デバッグ構成
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Build and Run dev profile",
+        "request": "launch",
+        "mainClass": "internal.dev.javaapp004.JavaApp004Application",
+        "args": "--spring.profiles.active=dev",
+        "preLaunchTask": "Build Maven Project",
+        "projectName": "java-app004"
+      },
+      {
+        "type": "java",
+        "name": "Run dev profile",
+        "request": "launch",
+        "mainClass": "internal.dev.javaapp004.JavaApp004Application",
+        "args": "--spring.profiles.active=dev",
+        "projectName": "java-app004"
+      },
+      {
+        "type": "java",
+        "name": "Run prod profile",
+        "request": "launch",
+        "mainClass": "internal.dev.javaapp004.JavaApp004Application",
+        "args": "--spring.profiles.active=prod",
+        "projectName": "java-app004"
+      },
+      {
+        "type": "java",
+        "name": "Attach to Remote Debugger",
+        "request": "attach",
+        "hostName": "localhost",
+        "port": 5005,
+        "projectName": "java-app004"
+      },
+      {
+        "type": "java",
+        "name": "Attach to Maven Process with Task",
+        "request": "attach",
+        "hostName": "localhost",
+        "port": 5005,
+        "preLaunchTask": "Run Maven with Debug",
+        "postDebugTask": "Stop Maven Debug Process",
+        "projectName": "java-app004"
+      }
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Clean bin folder",
+        "type": "shell",
+        "command": "rm -rf bin",
+        "problemMatcher": []
+      },
+      {
+        "label": "Build Maven Project",
+        "type": "shell",
+        "command": "./mvnw clean install",
+        "dependsOn": [
+          "Clean bin folder"
+        ],
+        "problemMatcher": [
+          "$msCompile"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "detail": "Run the maven build command"
+      },
+      {
+        "label": "Run Maven with Debug",
+        "type": "shell",
+        "command": "./mvnw",
+        "args": [
+          "exec:exec",
+          "-Pdebug"
+        ],
+        "problemMatcher": [],
+        "isBackground": true,
+        "dependsOn": [],
+        "detail": "Run the maven exec:exec -Pdebug command"
+      },
+      {
+        "label": "Stop Maven Debug Process",
+        "type": "shell",
+        "command": "ss -tln | grep :5005 > /dev/null && fuser -k 5005/tcp || true",
+        "problemMatcher": [],
+      }
+    ]
+  }
+}
