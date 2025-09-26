@@ -1,4 +1,4 @@
-# java-app001-05
+# java-app001
 
 これは、基本的な "Hello, World!" をコンソールに出力するシンプルな Java アプリケーションです。このプロジェクトは、SLF4J と Logback によるロギング機能も含んでいます。
 
@@ -112,3 +112,9 @@ java-app001/
 ├── java-app001.code-workspace
 └── README.md
 ```
+
+## プロジェクトとは別ライセンス (Licenses) のファイル
+
+プロジェクトとは別ライセンス (Licenses) のファイルが含まれています。これらを使用する場合は、それぞれのライセンスに同意してください。使用しない場合は、これらを別の内容に置き換えるか、利用する設定を無効化するようにしてください。
+
+このプロジェクトに含まれる `google_checks.xml` は、[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) で配布されている [google_checks.xml](https://github.com/checkstyle/checkstyle/blob/f486dcacb9b6096bd28ce9b6b3d215f922f315e7/src/main/resources/google_checks.xml) のものです。
