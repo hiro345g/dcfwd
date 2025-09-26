@@ -5,21 +5,26 @@
   "dockerComposeFile": "./compose.yaml",
   "service": "dvc-java-gemini",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  // `google.gemini-cli-vscode-ide-companion` 対応の暫定対応。
+  // `host.docker.internal` を別用途で使うことを優先する場合は、
+  // `"postCreateCommand":` の行はコメントアウトすること。
+  "postCreateCommand": "echo '127.0.0.1 host.docker.internal' | sudo tee -a /etc/hosts",
   "customizations": {
     "vscode": {
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash"
       },
       "extensions": [
-        "vscjava.vscode-java-pack",
-        "shengchen.vscode-checkstyle",
-        "ms-azuretools.vscode-containers",
-        "docker.docker",
-        "eamodio.gitlens",
-        "donjayamanne.githistory",
-        "mhutchie.git-graph",
-        "google.gemini-code-assist",
-        "google.gemini-cli-vscode-ide-companion"
+        "vscjava.vscode-java-pack", // Java Extension Pack
+        "vmware.vscode-boot-dev-pack", // Spring Boot Extension Pack
+        "shengchen.vscode-checkstyle", // Checkstyle
+        "ms-azuretools.vscode-containers", // Container Tools
+        "docker.docker", // Docker DX
+        "eamodio.gitlens", // Git Lens
+        "donjayamanne.githistory", // Git History
+        "mhutchie.git-graph", // Git Graph
+        "google.gemini-code-assist", // Gemini Code Assist
+        "google.gemini-cli-vscode-ide-companion" // Gemini CLI
       ]
     }
   }

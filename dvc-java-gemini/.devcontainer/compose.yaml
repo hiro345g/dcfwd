@@ -2,14 +2,31 @@ name: dvc-java-gemini
 services:
   dvc-java-gemini:
     build: .
-    image: dvc-java-gemini:0.0.1
+    image: dvc-java-gemini:0.0.2
+    container_name: dvc-java-gemini
+    hostname: dvc-java-gemini
     tty: true
     volumes:
-      # 開発コンテナで使う作業用フォルダ
+      # dvc-java-gemini の Docker Compose プロジェクト用フォルダを
+      # /workspaces/dvc-java-gemini にバインドマウント
       - type: bind
         source: ..
         target: /workspaces/dvc-java-gemini
-      # Gemini CLI の設定用フォルダ
+      # Gemini 設定用フォルダをバインドマウント
       - type: bind
         source: ../.gemini
         target: /home/node/.gemini
+      # Maven 用フォルダを Docker ボリュームへマウント
+      - type: volume
+        source: dvc-java-gemini-m2
+        target: /home/node/.m2
+      # Gradle 用フォルダを Docker ボリュームへマウント
+      - type: volume
+        source: dvc-java-gemini-gradle
+        target: /home/node/.gradle
+
+volumes:
+  dvc-java-gemini-m2:
+    name: dvc-java-gemini-m2
+  dvc-java-gemini-gradle:
+    name: dvc-java-gemini-gradle
