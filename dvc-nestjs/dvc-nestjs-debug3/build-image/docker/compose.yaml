@@ -1,0 +1,15 @@
+name: dvc-nestjs-build-image
+services:
+  dvc-nestjs-build-image:
+    # node, npm, docker コマンドが使えるコンテナーが必要
+    image: hiro345g/dvc:base-202410 
+    tty: true
+    command: sh -c "sudo cp -r /workspace /home/node && sudo chown -R node /home/node/workspace && sudo sh /home/node/workspace/build.sh"
+    user: node
+    volumes:
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-..}
+        target: /workspace
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock

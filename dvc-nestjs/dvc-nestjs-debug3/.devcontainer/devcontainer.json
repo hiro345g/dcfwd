@@ -1,0 +1,15 @@
+{
+	"name": "dvc-nestjs-debug3",
+	"dockerComposeFile": [ "../compose.yaml" ],
+	"service": "dvc-nestjs-debug3",
+	"remoteUser": "node",
+	"workspaceFolder": "/workspace/app001",
+	"postCreateCommand": "sudo chown -R node node_modules && npm install",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint"
+			]
+		}
+	}
+}

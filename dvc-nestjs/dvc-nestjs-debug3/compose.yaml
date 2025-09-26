@@ -1,0 +1,18 @@
+name: dvc-nestjs-debug3
+services:
+  dvc-nestjs-debug3:
+    image: "dvc-nestjs:debug3"
+    container_name: dvc-nestjs-debug3
+    tty: true
+    volumes:
+      - type: bind
+        source: ../dvc-nestjs-debug/app001
+        target: /workspace/app001
+        consistency: cached
+      - type: volume
+        source: node_modules
+        target: /workspace/app001/node_modules
+
+volumes:
+  node_modules:
+    name: dvc-nestjs-debug-node_modules

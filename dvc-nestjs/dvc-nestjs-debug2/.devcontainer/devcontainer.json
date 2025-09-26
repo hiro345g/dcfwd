@@ -1,0 +1,28 @@
+{
+	"name": "dvc-nestjs-debug2",
+	"dockerComposeFile": [ "../compose.yaml" ],
+	"features": {
+        "ghcr.io/devcontainers/features/common-utils:2.5.3": {},
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1.6.3": {
+            "version": "latest",
+            "dockerDashComposeVersion": "v2"
+        },
+        "ghcr.io/devcontainers/features/git:1.3.4": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/git-lfs:1.2.5": {
+            "version": "latest"
+        }
+	},
+	"service": "dvc-nestjs-debug2",
+	"remoteUser": "node",
+	"workspaceFolder": "/workspace/app001",
+	"postCreateCommand": "sudo chown -R node node_modules && npm install",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint"
+			]
+		}
+	}
+}

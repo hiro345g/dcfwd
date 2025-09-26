@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"launch": {
+		// 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "npm run start:debug の起動",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"run",
+					"start:debug",
+				],
+				"console": "integratedTerminal",
+			},
+			{
+				"type": "node",
+				"request": "attach",
+				"name": "Debug (attach)",
+				"address": "localhost",
+				"port": 9229,
+			}
+		]
+	},
+	"extensions": {
+		"recommendations": [
+			"dbaeumer.vscode-eslint"
+		]
+	}
+}

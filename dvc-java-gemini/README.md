@@ -36,6 +36,8 @@ code .
 
 ## プロジェクト構成
 
-- `.devcontainer/`: Dev Containerの設定ファイル（`devcontainer.json`, `compose.yaml`, `Dockerfile`）
+- `.devcontainer/`: Dev Container の設定ファイル（`devcontainer.json`, `compose.yaml`, `Dockerfile`）
 - `java-app002/`: Gradle プロジェクトのサンプル Java アプリケーション
 - `java-app003/`: Maven プロジェクトのサンプル Java アプリケーション
+- `java-app004/`: Spring Boot のサンプル Java アプリケーション（Maven 版）
+- `java-app005/`: Spring Boot のサンプル Java アプリケーション（Gradle 版）

@@ -1,0 +1,21 @@
+name: dvc-nestjs-debug2a
+services:
+  dvc-nestjs-debug2a:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: "dvc-nestjs:debug2a-base"
+    container_name: dvc-nestjs-debug2a
+    tty: true
+    volumes:
+      - type: bind
+        source: ../dvc-nestjs-debug/app001
+        target: /workspace/app001
+        consistency: cached
+      - type: volume
+        source: node_modules
+        target: /workspace/app001/node_modules
+
+volumes:
+  node_modules:
+    name: dvc-nestjs-debug-node_modules
