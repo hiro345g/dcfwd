@@ -1,0 +1,84 @@
+plugins {
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
+    id 'java'
+    id 'checkstyle'
+}
+
+group = 'internal.dev'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation libs.spring.boot.starter
+    developmentOnly libs.spring.boot.devtools
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+    testImplementation libs.spring.boot.starter.test
+    testRuntimeOnly libs.junit.platform.launcher
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+checkstyle {
+    toolVersion = libs.versions.checkstyleTool.get()
+    configFile = file('google_checks.xml')
+    checkstyleTest.enabled = false
+}
+
+tasks.named('test') {
+    finalizedBy 'checkstyleMain'
+}
+
+// ==================================================
+// Profiles
+// ==================================================
+
+// Set 'dev' as the default profile if no other profile is specified.
+ext.profile = project.hasProperty('profile') ? project.getProperty('profile') : 'dev'
+
+// Configure the bootRun task to use the specified profile.
+tasks.withType(org.springframework.boot.gradle.tasks.run.BootRun) {
+    args = ["--spring.profiles.active=${profile}"]
+}
+
+// Add JVM arguments for debugging if the 'debug' property is set.
+if (project.hasProperty('debug')) {
+    tasks.withType(JavaExec) {
+        jvmArgs = ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005']
+    }
+}
+
+// Configure the bootJar task to include the profile in the manifest.
+tasks.withType(org.springframework.boot.gradle.tasks.bundling.BootJar) {
+    manifest {
+        attributes(
+            'Spring-Boot-Profiles': profile
+        )
+    }
+}
+
+// Define a task to show the current profile.
+task showProfile {
+    doLast {
+        println "Current profile: ${profile}"
+    }
+}

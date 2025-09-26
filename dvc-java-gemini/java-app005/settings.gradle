@@ -1,0 +1,9 @@
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            // Automatically finds and configures the catalog from gradle/libs.versions.toml
+        }
+    }
+}
+
+rootProject.name = 'java-app005'

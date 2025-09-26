@@ -1,0 +1,15 @@
+[versions]
+springBoot = "3.5.6"
+springDependencyManagement = "1.1.6"
+checkstyleTool = "10.17.0"
+
+[libraries]
+lombok = { group = "org.projectlombok", name = "lombok" }
+junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher" }
+spring-boot-starter = { group = "org.springframework.boot", name = "spring-boot-starter" }
+spring-boot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
+spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }
