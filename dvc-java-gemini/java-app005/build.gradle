@@ -55,6 +55,13 @@ tasks.named('test') {
 // Set 'dev' as the default profile if no other profile is specified.
 ext.profile = project.hasProperty('profile') ? project.getProperty('profile') : 'dev'
 
+// Filter application.properties and replace placeholders.
+tasks.withType(ProcessResources) {
+    filesMatching('**/application.properties') {
+        expand(profile: project.ext.profile)
+    }
+}
+
 // Configure the bootRun task to use the specified profile.
 tasks.withType(org.springframework.boot.gradle.tasks.run.BootRun) {
     args = ["--spring.profiles.active=${profile}"]
