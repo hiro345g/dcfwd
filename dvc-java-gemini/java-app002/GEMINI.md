@@ -51,6 +51,18 @@ Log levels are used as follows:
 3. **Location**: Test classes are located in the `app/src/test/java` directory.
 4. **Execution**: Run tests using `./gradlew test`. All tests must pass for a change to be considered complete.
 
+## Documentation Policy
+
+1. **Format**: Public APIs (classes, methods, and fields) should be documented using **Javadoc** comments.
+2. **Style**: Follow the conventions outlined in the **Google Java Style Guide's** section on Javadoc. This ensures consistency with the overall code style.
+3. **Generation**: The `maven-javadoc-plugin` is configured in `pom.xml` to generate a Javadoc JAR from the source code.
+4. **Build Integration**: The Javadoc JAR is automatically generated as part of the `mvn clean install` command.
+5. **Manual Generation**: To generate the Javadoc documentation manually, run the following command. The output will be in the `target/site/apidocs` directory.
+
+```sh
+./gradlew javadoc
+```
+
 ## Build
 
 To build the project, run the following command. This command downloads dependencies, runs the Checkstyle linter, and compiles the source code.
@@ -75,12 +87,26 @@ To run the project's tests, use the following command.
 ./gradlew test
 ```
 
+Test results are displayed in detail in the console.
+
+**Note:** If the source code has not changed, Gradle may skip running the tests (the result will be displayed as `UP-TO-DATE`). To force the tests to be re-run in that case, use the following command:
+
+```sh
+./gradlew cleanTest test
+```
+
 ## Project Structure
 
 ```text
 java-app002/
+├── GEMINI.md
+├── README.md
+├── .gitattributes
+├── .gitignore
 ├── app/
 │   ├── build.gradle
+│   ├── logs/
+│   │   └── app.log
 │   └── src/
 │       ├── main/
 │       │   ├── java/
@@ -90,22 +116,20 @@ java-app002/
 │       │   └── resources/
 │       │       └── logback.xml
 │       └── test/
-│           └── java/
-│               └── internal/
-│                   └── dev/
-│                       └── AppTest.java
+│           ├── java/
+│           │   └── internal/
+│           │       └── dev/
+│           │           └── AppTest.java
+│           └── resources/
+├── google_checks.xml
 ├── gradle/
 │   ├── libs.versions.toml
 │   └── wrapper/
 │       ├── gradle-wrapper.jar
 │       └── gradle-wrapper.properties
-├── logs/
-│   └── .gitkeep
-├── .gitignore
-├── google_checks.xml
+├── gradle.properties
 ├── gradlew
 ├── gradlew.bat
 ├── java-app002.code-workspace
-├── README.md
 └── settings.gradle
 ```

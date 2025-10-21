@@ -32,7 +32,7 @@
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
       "**/.gradle": true,
-      "**/build": false,
+      "**/build": false, // ドキュメントが生成されるフォルダ
       "**/.settings": true, // Eclipse 固有の設定ファイル
       "**/.classpath": true,
       "**/.project": true
@@ -48,6 +48,88 @@
       "eamodio.gitlens",
       "donjayamanne.githistory",
       "mhutchie.git-graph"
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Debug (Launch) - Current File",
+        "request": "launch",
+        "mainClass": "${file}"
+      },
+      {
+        "type": "java",
+        "name": "Debug (Launch) - App",
+        "request": "launch",
+        "mainClass": "internal.dev.App",
+        "projectName": "app",
+        "preLaunchTask": "gradle-build"
+      },
+      {
+        "type": "java",
+        "name": "Debug (Attach)",
+        "request": "attach",
+        "hostName": "localhost",
+        "port": 5005,
+        "projectName": "app"
+      },
+      {
+        "type": "java",
+        "name": "Attach to Gradle Process with Task",
+        "request": "attach",
+        "hostName": "localhost",
+        "port": 5005,
+        "preLaunchTask": "Run Gradle with Debug",
+        "postDebugTask": "Stop Debug Process",
+        "projectName": "java-app005"
+      }
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Clean bin folder",
+        "type": "shell",
+        "command": "rm -rf bin",
+        "problemMatcher": []
+      },
+      {
+        "label": "Build Gradle Project",
+        "type": "shell",
+        "command": "./gradlew build",
+        "dependsOn": [
+          "Clean bin folder"
+        ],
+        "problemMatcher": [
+          "$msCompile"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "detail": "Run the gradle build command"
+      },
+      {
+        "label": "Run Gradle with Debug",
+        "type": "shell",
+        "command": "./gradlew",
+        "args": [
+          "bootRun",
+          "-Pdebug"
+        ],
+        "problemMatcher": [],
+        "isBackground": true,
+        "detail": "Run the gradle bootRun -Pdebug command"
+      },
+      {
+        "label": "Stop Debug Process",
+        "type": "shell",
+        "command": "ss -tln | grep :5005 > /dev/null && fuser -k 5005/tcp || true",
+        "problemMatcher": []
+      }
     ]
   }
 }

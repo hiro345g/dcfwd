@@ -41,6 +41,12 @@ testing {
     }
 }
 
+tasks.withType(Test) {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
@@ -56,4 +62,11 @@ application {
 checkstyle {
     toolVersion = '10.17.0'
     configFile = rootProject.file('google_checks.xml')
+}
+
+// Javadoc の設定
+javadoc {
+    options.encoding = 'UTF-8'
+    options.docEncoding = 'UTF-8'
+    options.charSet = 'UTF-8'
 }

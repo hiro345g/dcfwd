@@ -12,6 +12,12 @@ public class App {
   private static final Logger logger = LoggerFactory.getLogger(App.class);
 
   /**
+   * Prevents instantiation of this utility class.
+   */
+  private App() {
+  }
+
+  /**
    * Returns a greeting message and logs some messages.
    *
    * @return The greeting "Hello, World from VS Code!"
