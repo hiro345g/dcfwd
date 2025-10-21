@@ -1,0 +1,13 @@
+name: goapp001-prod
+
+services:
+  app:
+    build:
+      context: ../../
+      dockerfile: ./docker/prod/Dockerfile
+    image: goapp001-prod:1.24.5
+    container_name: goapp001-prod
+    hostname: goapp001-prod
+    # ログ出力については、実際には別途対応が必要
+    environment:
+      - APP_ENV=${APP_ENV:-prod}

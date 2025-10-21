@@ -1,0 +1,5 @@
+# Development configuration sample
+# Copy this file to ../conf/config-development.yaml and customize it.
+level: debug
+logdir: log
+logfile: dev.log

@@ -1,0 +1,38 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		// Enable the Go language server for autocompletion, navigation, etc.
+		"go.useLanguageServer": true,
+		// Format code on save.
+		"editor.formatOnSave": true,
+		"[go]": {
+			"editor.defaultFormatter": "golang.go"
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			// Recommend the official Go extension.
+			"golang.go"
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launch Go App (Debug)",
+				"type": "go",
+				"request": "launch",
+				"mode": "debug",
+				"program": "${workspaceFolder}",
+				"env": {
+					// APP_ENV can be set here, for example:
+					// "APP_ENV": "development"
+				}
+			}
+		]
+	}
+}

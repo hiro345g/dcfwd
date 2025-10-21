@@ -1,0 +1,14 @@
+services:
+  app:
+    build:
+      context: ../../
+      dockerfile: ./docker/demo/Dockerfile
+    image: goapp001-demo:1.24.5
+    container_name: goapp001-demo
+    hostname: goapp001-demo
+    volumes:
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-../..}
+        target: /app
+    environment:
+      - APP_ENV=${APP_ENV:-dev}
