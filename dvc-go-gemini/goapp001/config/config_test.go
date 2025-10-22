@@ -22,14 +22,17 @@ func TestGetConfig(t *testing.T) {
 		resetSingleton()
 		tempDir := t.TempDir()
 		confDir := filepath.Join(tempDir, "conf")
-		os.Mkdir(confDir, 0755)
+		assert.NoError(t, os.Mkdir(confDir, 0755))
 		configPath := filepath.Join(confDir, "config.yaml")
-		os.WriteFile(configPath, []byte("level: test_level"), 0644)
+		assert.NoError(t, os.WriteFile(configPath, []byte("level: test_level"), 0644))
 
 		// Temporarily change CWD to tempDir to allow viper to find the conf dir
-		originalWD, _ := os.Getwd()
-		os.Chdir(tempDir)
-		defer os.Chdir(originalWD)
+		originalWD, err := os.Getwd()
+		assert.NoError(t, err)
+		assert.NoError(t, os.Chdir(tempDir))
+		defer func() {
+			assert.NoError(t, os.Chdir(originalWD))
+		}()
 
 		config := GetConfig()
 		assert.Equal(t, "test_level", config.Level)
@@ -39,13 +42,16 @@ func TestGetConfig(t *testing.T) {
 		resetSingleton()
 		tempDir := t.TempDir()
 		confDir := filepath.Join(tempDir, "conf")
-		os.Mkdir(confDir, 0755)
+		assert.NoError(t, os.Mkdir(confDir, 0755))
 		configPath := filepath.Join(confDir, "config.yaml")
-		os.WriteFile(configPath, []byte("level: file_level"), 0644)
+		assert.NoError(t, os.WriteFile(configPath, []byte("level: file_level"), 0644))
 
-		originalWD, _ := os.Getwd()
-		os.Chdir(tempDir)
-		defer os.Chdir(originalWD)
+		originalWD, err := os.Getwd()
+		assert.NoError(t, err)
+		assert.NoError(t, os.Chdir(tempDir))
+		defer func() {
+			assert.NoError(t, os.Chdir(originalWD))
+		}()
 
 		t.Setenv("APP_LEVEL", "env_level")
 
@@ -57,9 +63,12 @@ func TestGetConfig(t *testing.T) {
 		resetSingleton()
 		tempDir := t.TempDir()
 
-		originalWD, _ := os.Getwd()
-		os.Chdir(tempDir)
-		defer os.Chdir(originalWD)
+		originalWD, err := os.Getwd()
+		assert.NoError(t, err)
+		assert.NoError(t, os.Chdir(tempDir))
+		defer func() {
+			assert.NoError(t, os.Chdir(originalWD))
+		}()
 
 		config := GetConfig()
 		assert.Equal(t, "info", config.Level) // Default level is info
@@ -68,9 +77,12 @@ func TestGetConfig(t *testing.T) {
 	t.Run("is a singleton", func(t *testing.T) {
 		resetSingleton()
 		tempDir := t.TempDir()
-		originalWD, _ := os.Getwd()
-		os.Chdir(tempDir)
-		defer os.Chdir(originalWD)
+		originalWD, err := os.Getwd()
+		assert.NoError(t, err)
+		assert.NoError(t, os.Chdir(tempDir))
+		defer func() {
+			assert.NoError(t, os.Chdir(originalWD))
+		}()
 
 		// Get the config instance twice
 		config1 := GetConfig()

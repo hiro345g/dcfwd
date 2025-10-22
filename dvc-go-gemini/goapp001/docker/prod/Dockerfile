@@ -1,5 +1,5 @@
 # ---- Build Stage ----
-FROM golang:1.24.5-slim-bullseye AS builder
+FROM golang:1.24.5-bullseye AS builder
 
 # Set the working directory
 WORKDIR /app

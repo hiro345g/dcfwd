@@ -1,3 +1,4 @@
+name: goapp001-cicd
 services:
   test:
     build:
@@ -6,9 +7,5 @@ services:
     image: goapp001-cicd:1.24.5
     container_name: goapp001-cicd
     hostname: goapp001-cicd
-    volumes:
-      - type: bind
-        source: ${LOCAL_WORKSPACE_FOLDER:-../..}
-        target: /app
     environment:
-      GOTOOLCHAIN: local
+      GOTOOLCHAIN: ${GOTOOLCHAIN:-local}

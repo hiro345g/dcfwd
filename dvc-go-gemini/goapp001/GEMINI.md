@@ -37,6 +37,12 @@ This project is a simple Go application with environment-aware, configurable log
 
 You can also use Docker to run and test the application in an isolated environment. The configurations are located in the `docker/` directory.
 
+-   **Build Images:**
+    ```bash
+    docker compose -f docker/cicd/compose.yaml build
+    docker compose -f docker/demo/compose.yaml build
+    ```
+
 -   **Running Tests (CI/CD):**
     ```bash
     docker compose -f docker/cicd/compose.yaml run --rm test

@@ -1,0 +1,7 @@
+name: goapp001-cicd
+services:
+  test:
+    volumes:
+      - type: bind
+        source: ${LOCAL_WORKSPACE_FOLDER:-../../..}/goapp001
+        target: /app

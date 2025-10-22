@@ -9,6 +9,13 @@
 - Dockerfile: `docker/cicd/Dockerfile`
 - Compose ファイル: `docker/cicd/compose.yaml`
 
+
+各コンテナについて実行するには、Docker イメージをビルドしておく必要があります。例えば CI/CD 用の Docker イメージをビルドするには次のようにします。
+
+```bash
+docker compose -f docker/cicd/compose.yaml build
+```
+
 ### CI/CD (`docker/cicd`)
 
 この設定は、CI/CD パイプラインで自動テストを実行するためのものです。
@@ -57,17 +64,29 @@ echo "APP_ENV=dev` > `docker/prod/.env`
 1. イメージのビルド
 2. アプリケーションの実行
 
-これにより、アプリケーションがバックグラウンドで起動します。
+これにより、アプリケーションが起動します。
 
 ```bash
 docker compose -f docker/prod/compose.yaml build
 docker compose -f docker/prod/compose.yaml up
 ```
 
-ログを確認するには次のようにします。ログについては、実際の運用時に別途、保持するサイズ、ローテートの設定、出力先の調整といった対応が必要です。
+今回のアプリでログを確認するには `dev` モードで起動するのが手軽です。実行例は次のようになります。
 
 ```bash
-docker compose -p goapp001-prod logs
+$ echo "APP_ENV=dev` > `docker/prod/.env`
+$ docker compose -f docker/prod/compose.yaml up
+[+] Running 1/1
+ ✔ Container goapp001-prod  Recreated                                                                                                                                                                                                               0.1s 
+Attaching to goapp001-prod
+goapp001-prod  | {"level":"info","time":"2025-10-19T06:40:03Z","message":"Configuration loaded successfully. Log level: info"}
+goapp001-prod  | 6:40AM INF Logger initialized successfully.
+goapp001-prod  | 6:40AM INF Starting application with config: &{Level:info LogDir:log LogFile:app.log}
+goapp001-prod  | 6:40AM INF Application is running.
+goapp001-prod  | 6:40AM INF This is an info message from app.go.
+goapp001-prod  | 6:40AM WRN This is a warning message from app.go. user=Gopher
+goapp001-prod  | 6:40AM INF Application finished.
+goapp001-prod exited with code 0
 ```
 
 アプリの実行を終了するには `ocker compose down` します。

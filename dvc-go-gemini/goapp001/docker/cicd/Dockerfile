@@ -1,5 +1,5 @@
 # Use the specified Go version
-FROM golang:1.24.5-slim-bullseye
+FROM golang:1.24.5-bullseye
 
 # Set the working directory inside the container
 WORKDIR /app

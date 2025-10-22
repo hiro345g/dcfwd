@@ -1,3 +1,4 @@
+name: goapp001-demo
 services:
   app:
     build:
@@ -8,7 +9,7 @@ services:
     hostname: goapp001-demo
     volumes:
       - type: bind
-        source: ${LOCAL_WORKSPACE_FOLDER:-../..}
+        source: ${LOCAL_WORKSPACE_FOLDER:-../../..}/goapp001
         target: /app
     environment:
       - APP_ENV=${APP_ENV:-dev}
