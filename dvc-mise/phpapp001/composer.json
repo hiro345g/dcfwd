@@ -1,0 +1,9 @@
+{
+    "name": "vendor/phpapp001",
+    "version": "1.0.0",
+    "description": "A simple PHP console application",
+    "require": {},
+    "scripts": {
+        "start": "php main.php"
+    }
+}
