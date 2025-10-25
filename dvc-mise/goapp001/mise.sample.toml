@@ -1,0 +1,3 @@
+[tools]
+go = "1.24.9"
+aqua:go-task/task = "latest"
