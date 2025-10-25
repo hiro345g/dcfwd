@@ -1,0 +1,10 @@
+[tools]
+python = "3.12.12"
+uv = "0.9.5"
+
+[tasks]
+init = "[ -d .venv ] || uv venv"
+
+[tasks.start]
+depends = ["init"]
+run = ". .venv/bin/activate && python main.py"

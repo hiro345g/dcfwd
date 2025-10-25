@@ -1,0 +1,4 @@
+[project]
+name = "pyapp001"
+version = "0.1.0"
+description = "A simple Python application."
