@@ -1,0 +1,21 @@
+{
+  "name": "dvc-mise",
+  "dockerComposeFile": "./compose.yaml",
+  "service": "dvc-mise",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "postCreateCommand": "echo '127.0.0.1 host.docker.internal' | sudo tee -a /etc/hosts",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-azuretools.vscode-containers",
+        "docker.docker",
+        "eamodio.gitlens",
+        "donjayamanne.githistory",
+        "mhutchie.git-graph"
+      ]
+    }
+  }  
+}

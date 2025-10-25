@@ -1,0 +1,35 @@
+name: dvc-mise
+services:
+  dvc-mise:
+    build:
+      context: ..
+      dockerfile: ./.devcontainer/Dockerfile
+    image: dvc-mise:202510
+    container_name: dvc-mise
+    hostname: dvc-mise
+    tty: true
+    user: 1000:1000
+    volumes:
+      # dvc-mise の Docker Compose プロジェクト用フォルダを
+      # /workspaces/dvc-mise にバインドマウント
+      - type: bind
+        source: ..
+        target: /workspaces/dvc-mise
+      # Gemini 設定用フォルダをバインドマウント
+      - type: bind
+        source: ../.gemini
+        target: /home/vscode/.gemini
+      # mise 用フォルダを Docker ボリュームへマウント
+      - type: volume
+        source: dvc-mise-share-mise
+        target: /home/vscode/.local/share/mise
+      # mise trust の情報を保存するフォルダを Docker ボリュームへマウント
+      - type: volume
+        source: dvc-mise-state-mise
+        target: /home/vscode/.local/state/mise
+
+volumes:
+  dvc-mise-share-mise:
+    name: dvc-mise-share-mise
+  dvc-mise-state-mise:
+    name: dvc-mise-state-mise

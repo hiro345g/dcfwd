@@ -1,0 +1,10 @@
+[tools]
+fzf = "latest"
+ghq = "latest"
+zellij = "latest"
+node = "23.11.1"
+java = "temurin-21.0.8+9.0.LTS"
+go = "1.24.9"
+python = "3.12.12"
+ruby = "3.4.7"
+php = "8.3.27"
