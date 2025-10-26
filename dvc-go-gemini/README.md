@@ -4,6 +4,10 @@
 
 Dev Container と Gemini CLI を利用することで、一貫性があり隔離された開発環境が提供され、複雑なローカル設定なしでプロジェクトを簡単に開始できます。
 
+Zenn で、このプロジェクトについての解説記事を公開しています。
+
+- [VS Code と Docker で始める！Go 開発入門 \- 2025年10月版](https://zenn.dev/hiro345/articles/20251022_vscode_go)
+
 ## 前提条件
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
