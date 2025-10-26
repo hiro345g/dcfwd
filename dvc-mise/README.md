@@ -33,6 +33,87 @@ cd ${PROJECT_DIR}
 
 このリポジリのルートにある `mise.toml` ファイルは、さまざまな言語ランタイムとツールに必要なバージョンを定義するために使用されます。これにより、すべてのプロジェクトで一貫した開発環境を保証できます。
 
+
+## dvc-mise 利用に必要な条件
+
+お使いの PC に VS Code がインストールされている必要があります。
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+
+また、次の `VS Code` 拡張機能もインストールしておいてください。
+
+- [Container Tools](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers)
+- [Docker DX](https://marketplace.com/items?itemName=docker.docker)
+- [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
+Linux、macOS では `git` が必要です。
+
+Windows の場合は、次のツールが必要です。
+
+- [Git for Windows](https://gitforwindows.org/)
+- [WSL Ubuntu](https://learn.microsoft.com/ja-jp/windows/wsl/install)
+
+Windows では PowerShell を管理者モードで起動して、次のコマンドを実行すると、これらをインストールできます。
+
+```ps1
+winget install -e --id Git.Git
+wsl --install
+```
+
+### Docker
+
+Dockerのソフトウェアも必要です。
+
+- `Docker`
+  - [Docker Engine](https://docs.docker.com/engine/)
+  - [Docker Compose](https://docs.docker.com/compose/)
+
+**Linux**:
+
+Docker Compose は Docker Engine に含まれているので、Linux では、<https://docs.docker.com/engine/install/> にある手順に従ってインストールします。
+
+**macOS**:
+
+Lima (<https://github.com/lima-vm/lima>) などをインストールした環境を用意して Docker Engine や Docker Compose をインストールします。
+
+ライセンスについて注意が必要ですが、[Docker Desktop](https://docs.docker.com/desktop/) をインストールしても良いです。Docker Desktop のライセンスについては、<https://docs.docker.com/subscription/desktop-license/> を確認してください。個人利用であれば無償ですが、そうでない場合は、商用ライセンスが必要となる場合があります。
+
+**Windows**:
+
+`WSL Ubuntu` をインストールしてあれば、開発コンテナを使うときにこれらを含む `Docker in WSL` が自動でインストールされます。そのため、前提条件としては必須ではありません。なお、`Docker in WSL` は `WSL Ubuntu` へ Docker の公式リポジトリを登録して、`docker-ce` パッケージ等をインストールするものです。
+
+ここで、`Docker in WSL` だと `WSL Ubuntu` 内でしか `docker` コマンドが使えません。
+
+macOS と同様にライセンスについて注意が必要ですが、[Docker Desktop](https://docs.docker.com/desktop/) を `Docker in WSL` の代わりにインストールしても良いです。こちらであれば、Windows の PowerShell や Git Bash でも `docker` コマンドが使えます。
+
+Windows で `Docker Desktop` をインストールするには、PowerShell を管理者モードで起動して、次のコマンドを実行するとインストールできます。
+
+```ps1
+winget install -e --id Docker.DockerDesktop
+```
+
+::::message
+
+通常は `Docker Desktop` をインストールするか、自分で `Docker in WSL` をインストールすることが多いでしょうから、`Docker in WSL` の自動インストールについては資料がすくないかと思います。筆者も詳細は調べていないため、環境によってはうまく動作しないことがあるかもしれません。ということで、参考になりそうな関連ファイルの情報を、ここに示しておきます。
+
+WSL Ubuntu の `wsl.conf` では `systemd` を有効化してあります。
+
+```bash
+$ cat /etc/wsl.conf
+
+[boot]
+systemd=true
+```
+
+VS Code のユーザー設定については `%APPDATA%\Code\User\settings.json` に設定ファイルがあり、Docker in WSL がインストールされた後の内容は次のようになっていました。
+
+```bash
+$ cat /mnt/c/Users/user001/AppData/Roaming/Code/User/settings.json
+{
+    "dev.containers.executeInWSL": true,
+}
+```
+
 ## 開発コンテナの利用の準備
 
 ### イメージのビルド
@@ -61,14 +142,22 @@ bash ./script/init.sh
 
 ### 開発コンテナの起動と利用
 
-イメージをビルドと `.gemini` フォルダを用意したら、次のコマンドで開発コンテナを起動できます。
+イメージをビルドと `.gemini` フォルダを用意したら、開発コンテナの起動して使ってみましょう。
+
+VS Codeを起動し、「ファイル」メニューから「フォルダを開く...」を選択して、先ほど用意した `dvc-mise` フォルダを開きます。
+
+もしくはターミナルで次のコマンドを実行します。
 
 ```bash
-cd dvc-mise
+cd $PROJECT_DIR
 code .
 ```
 
-VS Code が起動したら、「コンテナーで再度開く」という通知が表示されるのでボタンをクリックします。すると、dvc-mise の開発コンテナをアタッチした VS Code の画面が表示されます。その画面でターミナルを開いて `mise` コマンドを使った作業ができます。
+フォルダを開いた VS Code の画面が表示されると、VS Code の右下に「フォルダーには開発コンテナー構成ファイルが含まれています。コンテナーで再度開きますか？」という通知が表示されます。「コンテナーで再度開く」ボタンをクリックしてください。
+
+もし通知が表示されない場合は、`F1` キー（または `Ctrl+Shift+P`）でコマンドパレットを開き、`Dev Containers: Reopen in Container` と入力して実行します。
+
+これだけで、`dvc-mise` 用に設定されたDockerコンテナが起動し、その中で VS Code が再起動します。VS Code の左下が「開発コンテナー: dvc-mise」のようになれば成功です。
 
 ### 開発コンテナが使用するボリュームについて
 
