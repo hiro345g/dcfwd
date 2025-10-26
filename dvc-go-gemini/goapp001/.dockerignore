@@ -1,0 +1,20 @@
+# Git version control
+.git
+.gitignore
+
+# Docker files
+.dockerignore
+docker/
+Dockerfile
+
+# IDE and workspace configuration
+.vscode/
+*.code-workspace
+
+# Logs
+log/
+*.log
+
+# Documentation
+README.md
+GEMINI.md

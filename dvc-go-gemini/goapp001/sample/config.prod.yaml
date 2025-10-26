@@ -1,0 +1,5 @@
+# Production configuration sample
+# Copy this file to ../conf/config-production.yaml and customize it.
+level: info
+logdir: log
+logfile: production.log

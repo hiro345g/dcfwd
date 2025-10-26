@@ -1,0 +1,25 @@
+name: dvc-go-gemini
+services:
+  dvc-go-gemini:
+    build: .
+    image: dvc-go-gemini:202509
+    container_name: dvc-go-gemini
+    hostname: dvc-go-gemini
+    tty: true
+    user: 1000:1000
+    volumes:
+      # 開発コンテナで使う作業用フォルダ
+      - type: bind
+        source: ..
+        target: /workspaces/dvc-go-gemini
+      # Gemini CLI の設定用フォルダ
+      - type: bind
+        source: ../.gemini
+        target: /home/node/.gemini
+      - type: volume
+        source: gopath-data
+        target: /go
+
+volumes:
+  gopath-data:
+    name: dvc-go-gemini-gopath-data

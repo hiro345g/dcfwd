@@ -1,0 +1,12 @@
+name: goapp001-prod
+
+services:
+  app:
+    build:
+      context: ../../
+      dockerfile: ./docker/prod/Dockerfile
+    image: goapp001-prod:1.24.5
+    container_name: goapp001-prod
+    hostname: goapp001-prod
+    environment:
+      - APP_ENV=${APP_ENV:-prod}

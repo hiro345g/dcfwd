@@ -1,0 +1,4 @@
+# Default fallback configuration
+level: info
+logdir: log
+logfile: app.log

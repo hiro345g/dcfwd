@@ -1,0 +1,31 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/go
+{
+  "name": "dvc-go-gemini",
+  "dockerComposeFile": "./compose.yaml",
+  "service": "dvc-go-gemini",
+  // `google.gemini-cli-vscode-ide-companion` 対応の暫定対応。
+  // `host.docker.internal` を別用途で使うことを優先する場合は、
+  // `"postCreateCommand":` の行はコメントアウトすること。
+  "postCreateCommand": "echo '127.0.0.1 host.docker.internal' | sudo tee -a /etc/hosts",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "remoteUser": "node",
+  "shutdownAction": "none",
+  "remoteEnv": {
+    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+  },
+  "forwardPorts": [6080, 5901],
+  "portsAttributes": {
+    "6080": {
+      "label": "novnc"
+    },
+    "5901": {
+      "label": "tigervnc"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["golang.go"]
+    }
+  }
+}
