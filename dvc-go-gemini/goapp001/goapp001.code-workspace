@@ -30,7 +30,7 @@
 				"program": "${workspaceFolder}",
 				"env": {
 					// APP_ENV can be set here, for example:
-					// "APP_ENV": "development"
+					// "APP_ENV": "dev"
 				}
 			},
 			{
