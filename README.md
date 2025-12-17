@@ -11,16 +11,16 @@ Web アプリケーション開発以外でも開発コンテナーを使いた�
 | dev-fossil                   | fossil 利用                              |
 | devcon-fossil                | node ユーザーによる fossil 利用          |
 | devcon-python-fastapi-prisma | Python + FastAPI + Prisma                |
+| dvc-go-gemini                | VS Code + Go プロジェクト                |
 | dvc-java                     | VS Code + Java プロジェクト              |
 | dvc-java-gemini              | VS Code + Gemini CLI + Java プロジェクト |
+| dvc-mise                     | VS Code + mise                           |
 
 ## Dev Containers について
 
+dcfwd では、Docker、Visual Studio Code (VS Code)、VS Code の拡張機能（Container Tools、Docker DX、Dev Containers）が使える環境が用意されていて、開発コンテナーが動作することを前提としています。
+
 開発コンテナー（Dev Containers）については、開発が <https://github.com/devcontainers> でされていますので、そちらをご覧ください。
-
-### 必要なもの
-
-dcfwd で用意されている開発コンテナーを動作させるには、Docker Engine、Docker Compose、Visual Studio Code (VS Code) 、VS Code の拡張機能（Container Tools、Docker DX、Dev Containers）が使える環境が用意されていることを前提としています。
 
 ### Docker
 
