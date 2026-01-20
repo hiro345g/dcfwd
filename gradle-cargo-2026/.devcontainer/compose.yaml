@@ -1,0 +1,50 @@
+name: gradle-cargo-2026
+services:
+  gradle-cargo-2026:
+    image: hiro345g/dvc:jdk-202601
+    container_name: gradle-cargo-2026
+    hostname: gradle-cargo-2026
+    tty: true
+    user: 1000:1000
+    volumes:
+      # gradle-cargo-2026 の Docker Compose プロジェクト用フォルダを
+      # /workspaces/gradle-cargo-2026 にバインドマウント
+      - type: bind
+        source: ..
+        target: /workspaces/gradle-cargo-2026
+      # # Gemini 設定用フォルダをバインドマウント（Gemini CLI を使っている場合）
+      # - type: bind
+      #   source: ../.gemini
+      #   target: /home/node/.gemini
+      # mise 用フォルダを Docker ボリュームへマウント
+      - type: volume
+        source: share-mise
+        target: /home/node/.local/share/mise
+      # mise trust の情報を保存するフォルダを Docker ボリュームへマウント
+      - type: volume
+        source: state-mise
+        target: /home/node/.local/state/mise
+      # SDKMAN! 用の保存するフォルダを Docker ボリュームへマウント
+      - type: volume
+        source: sdkman
+        target: /usr/local/sdkman
+      # gradle-cargo-2026 内での /home/node/workspace を Docker ボリュームへマウント
+      - type: volume
+        source: home-node-workspace
+        target: /home/node/workspace
+    networks:
+      dvc-net:
+
+volumes:
+  share-mise:
+    name: gradle-cargo-2026-share-mise
+  state-mise:
+    name: gradle-cargo-2026-state-mise
+  sdkman:
+    name: gradle-cargo-2026-sdkman
+  home-node-workspace:
+    name: gradle-cargo-2026-home-node-workspace
+
+networks:
+  dvc-net:
+    name: gradle-cargo-2026-net

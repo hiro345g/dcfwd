@@ -1,0 +1,56 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.configuration.runtimes": [
+			{
+				"name": "JavaSE-21",
+				"path": "/usr/local/sdkman/candidates/java/21.0.9-tem"
+			},
+			{
+				"name": "JavaSE-17",
+				"path": "/usr/local/sdkman/candidates/java/17.0.17-tem",
+				"default": true
+			}
+		],
+		// `ln -s ${HOME}/.sdkman /usr/local/sdkman` でリンクしておくのが手軽
+		"java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/21.0.9-tem",
+		"java.gradle.buildServer.enabled": "on",
+		"java.import.gradle.home": "/usr/local/sdkman/candidates/gradle/8.14.2",
+		"java.import.gradle.java.home": "/usr/local/sdkman/candidates/java/17.0.17-tem",
+		// Community Server Connector 用の設定、/usr/lib/jvm にある Ubuntu のものを使うことも可能
+		"rsp-ui.rsp.java.home": "/usr/local/sdkman/candidates/java/17.0.17-tem",
+		// "rsp-ui.rsp.java.home": "/usr/lib/jvm/java-1.21.0-openjdk-amd64",
+		"java.compile.nullAnalysis.mode": "automatic",
+		"java.configuration.updateBuildConfiguration": "interactive",
+		"java.project.outputPath": "build/classes/java/main",
+		"java.project.sourcePaths": [
+			"src/main/java"
+		],
+		"java.project.referencedLibraries": [
+			// Cargo プラグインで Tomcat がダウンロードされるので、それを使う場合
+			"build/tomcat-home/lib/**/*.jar"
+			// RSP や SDKMAN! で Tomcat をインストールして使う場合の例を次に示している
+			// "/usr/local/rsp/redhat-community-server-connector/runtimes/installations/tomcat-10.1.50/apache-tomcat-10.1.50/lib/**/*.jar"
+			// "/usr/local/sdkman/candidates/tomcat/10.1.50/lib/**/*.jar"
+		],
+		"java.autobuild.enabled": true,
+		"java.debug.settings.hotCodeReplace": "auto"
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				// `./gradlew start-debug` 後に接続すること
+				"type": "java",
+				"name": "Debug",
+				"request": "attach",
+				"hostName": "localhost",
+				"port": 5005
+			}
+		]
+	}
+}
