@@ -6,15 +6,16 @@ VS Code の Dev Containers 拡張機能を使うと、開発コンテナーを�
 
 Web アプリケーション開発以外でも開発コンテナーを使いたいときはあるので、他のサンプルも提供しています。
 
-| フォルダ名                   | 説明                                     |
-| ---------------------------- | ---------------------------------------- |
-| dev-fossil                   | fossil 利用                              |
-| devcon-fossil                | node ユーザーによる fossil 利用          |
-| devcon-python-fastapi-prisma | Python + FastAPI + Prisma                |
-| dvc-go-gemini                | VS Code + Go プロジェクト                |
-| dvc-java                     | VS Code + Java プロジェクト              |
-| dvc-java-gemini              | VS Code + Gemini CLI + Java プロジェクト |
-| dvc-mise                     | VS Code + mise                           |
+| フォルダ名                   | 説明                                          |
+| ---------------------------- | --------------------------------------------- |
+| dev-fossil                   | fossil 利用                                   |
+| devcon-fossil                | node ユーザーによる fossil 利用               |
+| devcon-python-fastapi-prisma | Python + FastAPI + Prisma                     |
+| dvc-go-gemini                | VS Code + Go プロジェクト                     |
+| dvc-java                     | VS Code + Java プロジェクト                   |
+| dvc-java-gemini              | VS Code + Gemini CLI + Java プロジェクト      |
+| dvc-mise                     | VS Code + mise                                |
+| gradle-cargo-2026            | VS Code + mise + SDKMAN\! + Java プロジェクト |
 
 ## Dev Containers について
 
@@ -51,23 +52,23 @@ Docker Hub で次のイメージを公開しています。ビルド用のコー
 
 | イメージ名:タグ   | os        | node | vnc   | mise | go   | jdk | php | python | ruby |
 | ----------------- | --------- | ---- | ----- | ---- | ---- | --- | --- | ------ | ---- |
-| dvc:base-202509   | debian 12 | 22   | -     | -    | -    | -   | -   | -      | -    |
-| dvc:novnc-202509  | debian 12 | 22   | 1.2.0 | -    | -    | -   | -   | -      | -    |
-| dvc:202509        | debian 12 | 22   | 1.2.0 | i    | -    | -   | -   | -      | -    |
-| dvc:go-202509     | debian 12 | 22   | 1.2.0 | i    | 1.24 | -   | -   | -      | -    |
-| dvc:jdk-202509    | debian 12 | 22   | 1.2.0 | i    | -    | 17  | -   | -      | -    |
-| dvc:php-202509    | debian 12 | 22   | 1.2.0 | i    | -    | -   | 8.2 | -      | -    |
-| dvc:python-202509 | debian 12 | 22   | 1.2.0 | i    | -    | -   | -   | 3.12   | -    |
-| dvc:ruby-202509   | debian 12 | 22   | 1.2.0 | i    | -    | -   | -   | -      | 3.4  |
-| dvc:gnr-202509    | debian 12 | 22   | 1.2.0 | i    | 1.24 | -   | -   | -      | 3.4  |
-| dvc:gnpr-202509   | debian 12 | 22   | 1.2.0 | i    | 1.24 | -   | -   | 3.12   | 3.4  |
+| dvc:base-202601   | debian 13 | 24   | -     | -    | -    | -   | -   | -      | -    |
+| dvc:novnc-202601  | debian 13 | 24   | 1.2.0 | -    | -    | -   | -   | -      | -    |
+| dvc:202601        | debian 13 | 24   | 1.2.0 | i    | -    | -   | -   | -      | -    |
+| dvc:go-202601     | debian 13 | 24   | 1.2.0 | i    | 1.24 | -   | -   | -      | -    |
+| dvc:jdk-202601    | debian 13 | 24   | 1.2.0 | i    | -    | 21  | -   | -      | -    |
+| dvc:php-202601    | debian 13 | 24   | 1.2.0 | i    | -    | -   | 8.2 | -      | -    |
+| dvc:python-202601 | debian 13 | 24   | 1.2.0 | i    | -    | -   | -   | 3.12   | -    |
+| dvc:ruby-202601   | debian 13 | 24   | 1.2.0 | i    | -    | -   | -   | -      | 3.4  |
+| dvc:gnr-202601    | debian 13 | 24   | 1.2.0 | i    | 1.24 | -   | -   | -      | 3.4  |
+| dvc:gnpr-202601   | debian 13 | 24   | 1.2.0 | i    | 1.24 | -   | -   | 3.12   | 3.4  |
 
 表について補足説明
 
-- debian 12 のコードネームは bookworm
+- debian 13 のコードネームは trixie
 - vnc は tigervnc
-- mise は jdx/mise の略、i でインストール済みでバージョンは 2025.9.8
-- jdk は 21, 24 もインストール済み
+- mise は jdx/mise の略、i でインストール済みでバージョンは 2025.12.13
+- jdk は 17, 24 もインストール済み
 
 いずれも <https://github.com/devcontainers/images/tree/main/src/typescript-node> で公開されている typescript-node 開発コンテナーをベースとしています。
 
