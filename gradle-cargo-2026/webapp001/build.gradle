@@ -1,0 +1,94 @@
+plugins {
+    alias(libs.plugins.cargo)
+    id 'war'
+    id 'eclipse-wtp'
+}
+
+repositories {
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+}
+
+configurations {
+    tomcat
+}
+
+dependencies {
+    // https://tomcat.apache.org/whichversion.html
+    // https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api
+    providedCompile libs.jakarta.servlet.api
+    testImplementation libs.junit.junit
+
+    tomcat libs.tomcat.get().toString() + '@zip'
+}
+
+group = 'internal.dev.app001'
+version = '1.0-SNAPSHOT'
+description = 'webapp001'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
+
+war {
+    webAppDirectory = file('src/main/webapp')
+    // from 'src/WebContent' // adds a file-set to the root of the archive
+    // webInf { from 'src/additionalWebInf' } // adds a file-set to the WEB-INF dir.
+    // webXml = file('src/web.xml') // copies a file to WEB-INF/web.xml
+}
+
+task installTomcat(type: Copy) {
+    from { zipTree(configurations.tomcat.singleFile) }
+    into "$buildDir/tomcat-home"
+    eachFile { FileCopyDetails fileCopyDetails ->
+        def original = fileCopyDetails.relativePath
+        //strip the top level directory
+        fileCopyDetails.relativePath = new RelativePath(original.file, *original.segments[1..-1])
+    }
+}
+
+cargo {
+    containerId = 'tomcat10x'
+    port = 8080
+
+    deployable {
+        context = 'ROOT'
+    }
+
+    local {
+        homeDir = installTomcat.outputs.files.singleFile
+        outputFile = file("$homeDir/logs/server.log")
+    }
+}
+
+afterEvaluate {
+    cargoStartLocal.dependsOn installTomcat
+    cargoRedeployLocal.dependsOn assemble
+}
+
+tasks.register('start', com.bmuschko.gradle.cargo.tasks.local.CargoStartLocal) {
+    dependsOn installTomcat
+}
+
+tasks.register('stop', com.bmuschko.gradle.cargo.tasks.local.CargoStopLocal)
+
+tasks.register('start-debug', com.bmuschko.gradle.cargo.tasks.local.CargoStartLocal) {
+    dependsOn installTomcat
+    jvmArgs = '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005'
+    rmiPort = 8206
+}
+
+tasks.register('stop-debug', com.bmuschko.gradle.cargo.tasks.local.CargoStopLocal) {
+    rmiPort = 8206
+}

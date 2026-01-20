@@ -1,0 +1,21 @@
+{
+  "name": "gradle-cargo-2026",
+  "dockerComposeFile": "./compose.yaml",
+  "service": "gradle-cargo-2026",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "postCreateCommand": "/bin/bash /workspaces/gradle-cargo-2026/sample/to-dvc-env.sh; sudo chown -R node:node /home/node/.local/state/mise;",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-azuretools.vscode-containers",
+        "docker.docker",
+        "eamodio.gitlens",
+        "donjayamanne.githistory",
+        "mhutchie.git-graph"
+      ]
+    }
+  }  
+}
