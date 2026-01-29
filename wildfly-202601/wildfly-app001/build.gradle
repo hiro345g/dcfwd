@@ -1,0 +1,68 @@
+
+plugins {
+    id 'io.github.hiro345g.cargo-2026' version '1.0.0'
+    id 'war'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    wildfly
+}
+
+dependencies {
+    def cargoVersion = '1.10.26'
+
+    // Servlet API (Jakarta EE 10用。WildFly 27以降は jakarta 版を使用)
+    providedCompile 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+    
+    // WildFly 本体のダウンロード (バージョンは適宜調整してください)
+    wildfly 'org.wildfly:wildfly-dist:38.0.1.Final@zip'
+
+    // cargo, wildfly-controller-client, wildfly はバージョンは別々
+    cargo "org.codehaus.cargo:cargo-core-uberjar:$cargoVersion", 
+            "org.codehaus.cargo:cargo-ant:$cargoVersion",
+            "org.wildfly.core:wildfly-controller-client:31.0.1.Final"
+}
+
+// WildFly を build ディレクトリに展開する
+task installWildFly(type: Copy) {
+    group = 'setup'
+    from { zipTree(configurations.wildfly.singleFile) }
+    into "${buildDir}/wildfly-home"
+    eachFile { FileCopyDetails details ->
+        def segments = details.relativePath.segments
+        // ZIP内のルートフォルダ名を無視して展開
+        details.relativePath = new RelativePath(true, segments[1..-1] as String[])
+    }
+    includeEmptyDirs = false
+}
+
+cargo {
+    containerId = 'wildfly38x'
+    port = 8080
+
+    deployable {
+        context = 'ROOT'
+    }
+
+    local {
+        homeDir = file("${buildDir}/wildfly-home")
+        // コンソールに詳細ログを出す設定
+        outputFile = file("${buildDir}/wildfly-home/standalone/log/cargo.log")
+        logLevel = 'high'
+    }
+}
+
+// タスクの依存関係を設定
+afterEvaluate {
+    tasks.named('cargoStartLocal') { dependsOn installWildFly }
+    tasks.named('cargoRunLocal') { dependsOn installWildFly }
+}
+
+// 起動時に最新の WAR を作成するように設定
+[cargoStartLocal, cargoRunLocal].each { 
+    it.dependsOn assemble 
+}

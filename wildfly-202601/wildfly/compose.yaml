@@ -1,0 +1,6 @@
+name: wildfly
+services:
+  wildfly:
+    image: quay.io/wildfly/wildfly:31.0.1.Final-jdk17
+    container_name: wildfly
+    hostname: wildfly
