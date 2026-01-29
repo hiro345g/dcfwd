@@ -1,0 +1,21 @@
+{
+  "name": "wildfly-202601",
+  "dockerComposeFile": "./compose.yaml",
+  "service": "gradle-cargo-2026",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "postCreateCommand": "sudo chown -R node:node /home/node/.local/state/mise;",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-azuretools.vscode-containers",
+        "docker.docker",
+        "eamodio.gitlens",
+        "donjayamanne.githistory",
+        "mhutchie.git-graph"
+      ]
+    }
+  }  
+}
