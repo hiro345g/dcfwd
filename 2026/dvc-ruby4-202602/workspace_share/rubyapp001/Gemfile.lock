@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+  x86_64-linux
+
+DEPENDENCIES
+  bundler
+
+CHECKSUMS
+
+BUNDLED WITH
+  4.0.5

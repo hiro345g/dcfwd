@@ -1,0 +1,48 @@
+{
+  "name": "dvc-ruby4",
+  "dockerComposeFile": ["../compose.yaml"],
+  "service": "dvc-ruby4",
+  "remoteUser": "node",
+  "shutdownAction": "none",
+  "workspaceFolder": "/home/node/workspace",
+  "forwardPorts": [6080, 5901],
+  "portsAttributes": {
+    "6080": {
+      "label": "novnc"
+    },
+    "5901": {
+      "label": "tigervnc"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4,
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+      "extensions": [
+        // ---- devcontainer feature ruby
+        "shopify.ruby-lsp",
+        // ---- dvc
+        "dbaeumer.vscode-eslint",
+        "vscode-icons-team.vscode-icons",
+        "esbenp.prettier-vscode",
+        "oderwat.indent-rainbow",
+        "eamodio.gitlens",
+        "donjayamanne.githistory",
+        "mhutchie.git-graph",
+        "ms-azuretools.vscode-containers",
+        "docker.docker",
+        "christian-kohler.npm-intellisense",
+        "vscode-icons-team.vscode-icons",
+        "ms-vscode-remote.remote-containers",
+        "davidanson.vscode-markdownlint",
+        "ms-vscode-remote.vscode-remote-extensionpack"
+      ]
+    }
+  }
+}

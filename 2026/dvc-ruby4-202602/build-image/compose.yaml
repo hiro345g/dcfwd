@@ -1,0 +1,5 @@
+name: dvc-ruby4-202602
+services:
+  dvc-ruby4-202602:
+    build: .
+    image: dvc-ruby4-202602
