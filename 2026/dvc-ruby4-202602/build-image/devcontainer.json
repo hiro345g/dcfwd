@@ -1,0 +1,6 @@
+{
+  "name": "dvc-ruby4-202602",
+  "dockerComposeFile": "./compose.yaml",
+  "service": "dvc-ruby4-202602",
+  "workspaceFolder": "/home/node/workspace"
+}

@@ -1,0 +1,37 @@
+name: dvc-ruby4
+services:
+  dvc-ruby4:
+    image: dvc-ruby4-202602
+    container_name: dvc-ruby4
+    hostname: dvc-ruby4
+    init: true
+    tty: true
+    user: node
+    working_dir: /home/node/workspace
+    networks:
+      dvc-net:
+    volumes:
+      - workspace-data:/home/node/workspace
+      - rvm-data:/usr/local/rvm
+      - vscode-server-extensions:/home/node/.vscode-server/extensions
+      - type: bind
+        source: ${SHARE_DIR:-./workspace_share}
+        target: /share
+    environment:
+      ENV LANGUAGE: ja_JP.UTF-8
+      ENV LANG: ja_JP.UTF-8
+      ENV LC_ALL: ja_JP.UTF-8
+      EDITOR: code
+      NPM_CONFIG_USERCONFIG: ${NPM_CONFIG_USERCONFIG:-/home/node/.npmrc}
+
+volumes:
+  workspace-data:
+    name: dvc-node-workspace-data
+  rvm-data:
+    name: dvc-rvm-data
+  vscode-server-extensions:
+    name: dvc-vscode-server-extensions
+
+networks:
+  dvc-net:
+    name: dvc-net
